@@ -1,31 +1,27 @@
-<!doctype html>
-<html lang="en-US">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <title>Gamedev Canvas Workshop</title>
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-        }
-        
-        canvas {
-            background: #eee;
-            display: block;
-            margin: 0 auto;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brick Breaker Game</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <canvas id="myCanvas" width="480" height="320"></canvas>
-    <div class="controls">
-        <button id="pauseBtn">Pause</button>
-        <button id="restartBtn">Restart</button>
+    <div id="gameArea">
+        <div id="paddle"></div>
+        <div id="ball"></div>
+        <div class="brick" style="left: 10px; top: 30px;"></div>
+        <div class="brick" style="left: 60px; top: 30px;"></div>
+        <div class="brick" style="left: 110px; top: 30px;"></div>
+        <!-- More bricks here -->
     </div>
-    <script src="script.js">
-    </script>
+
+    <button id="pauseButton">Pause</button>
+    <button id="restartButton">Restart</button>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
