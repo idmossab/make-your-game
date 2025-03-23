@@ -1,0 +1,10 @@
+[2025-03-23 18:16:19] ❌ Script file does not exist: .
+[2025-03-23 18:16:46] 🔄 Testing script execution: gitscript.sh
+[2025-03-23 18:16:46] ⚠️ Please provide a file name!
+[2025-03-23 18:16:46] Script output: [2025-03-23 18:16:46] ⚠️ Please provide a file name!
+Usage: gitscript.sh <script_file> <commit_message>
+[2025-03-23 18:16:46] Exit code: 1
+[2025-03-23 18:16:46] 🔍 Evaluating test cases
+[2025-03-23 18:16:46] Test cases found in script
+[2025-03-23 18:16:46] No dedicated test file found
+[2025-03-23 18:16:46] 📝 Adding file to Git: gitscript.sh
