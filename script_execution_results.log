@@ -17,3 +17,6 @@ Usage: gitscript.sh <script_file> <commit_message>
 [2025-03-23 18:19:07] ⚠️ Please provide a commit message!
 [2025-03-23 18:19:16] ❌ Script file does not exist: .
 [2025-03-23 19:23:17] 📁 Adding directory contents: .
+[2025-03-23 19:23:17] 💾 Committing changes with message: add .
+[2025-03-23 19:23:17] 🚀 Pushing changes to branch: master
+[2025-03-23 19:23:19] ✅ Changes have been successfully pushed to branch: master
