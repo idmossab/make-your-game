@@ -8,3 +8,12 @@ Usage: gitscript.sh <script_file> <commit_message>
 [2025-03-23 18:16:46] Test cases found in script
 [2025-03-23 18:16:46] No dedicated test file found
 [2025-03-23 18:16:46] 📝 Adding file to Git: gitscript.sh
+[2025-03-23 18:16:46] 💾 Committing changes with message: gitm1
+[2025-03-23 18:16:46] 🚀 Pushing changes to branch: master
+[2025-03-23 18:16:48] 📦 Deploying script
+[2025-03-23 18:16:48] ✅ Script deployed successfully to ./deployed_scripts
+[2025-03-23 18:16:48] ✅ Process completed successfully
+[2025-03-23 18:18:59] ⚠️ Please provide a commit message!
+[2025-03-23 18:19:07] ⚠️ Please provide a commit message!
+[2025-03-23 18:19:16] ❌ Script file does not exist: .
+[2025-03-23 19:23:17] 📁 Adding directory contents: .
