@@ -1,49 +1,49 @@
 #!/bin/bash
 
-# التحقق من وجود المعلمات المطلوبة
+# Check if required parameters are provided
 if [ -z "$1" ]; then
-    echo "⚠️  الرجاء تقديم اسم الملف!"
-    echo "الاستخدام: $0 <اسم_الملف> <رسالة_الالتزام>"
+    echo "⚠️  Please provide a file name!"
+    echo "Usage: $0 <file_name> <commit_message>"
     exit 1
 fi
 if [ -z "$2" ]; then
-    echo "⚠️  الرجاء تقديم رسالة التزام!"
-    echo "الاستخدام: $0 <اسم_الملف> <رسالة_الالتزام>"
+    echo "⚠️  Please provide a commit message!"
+    echo "Usage: $0 <file_name> <commit_message>"
     exit 1
 fi
 
-# التحقق مما إذا كان المستودع صالحًا
+# Check if this is a valid git repository
 if ! git rev-parse --is-inside-work-tree &>/dev/null; then
-    echo "❌ هذا ليس مستودع Git صالح!"
+    echo "❌ This is not a valid Git repository!"
     exit 1
 fi
 
-# اكتشاف الفرع الحالي
+# Detect current branch
 CURRENT_BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null)
 if [ -z "$CURRENT_BRANCH" ]; then
-    echo "❌ فشل في تحديد الفرع الحالي!"
+    echo "❌ Failed to determine current branch!"
     exit 1
 fi
 
-# إضافة التغييرات (مع التعامل الصحيح مع المسافات في اسم الملف)
+# Add changes (with proper handling of spaces in filename)
 git add "$1"
 if [ $? -ne 0 ]; then
-    echo "❌ فشل في إضافة الملف: $1"
+    echo "❌ Failed to add file: $1"
     exit 1
 fi
 
-# عمل commit بالرسالة المقدمة
+# Commit with the provided message
 git commit -m "$2"
 if [ $? -ne 0 ]; then
-    echo "❌ فشل في عمل commit!"
+    echo "❌ Failed to commit!"
     exit 1
 fi
 
-# دفع التغييرات إلى الفرع الحالي
+# Push changes to the current branch
 git push origin "$CURRENT_BRANCH"
 if [ $? -ne 0 ]; then
-    echo "❌ فشل في دفع التغييرات إلى الفرع: $CURRENT_BRANCH"
+    echo "❌ Failed to push changes to branch: $CURRENT_BRANCH"
     exit 1
 fi
 
-echo "✅ تم دفع التغييرات بنجاح إلى الفرع: $CURRENT_BRANCH"
+echo "✅ Changes have been successfully pushed to branch: $CURRENT_BRANCH"
