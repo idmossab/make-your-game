@@ -1,17 +1,11 @@
-// تعريف المتغيرات
-let gameArea = document.getElementById('gameArea').getBoundingClientRect();
+// Define variables
+let gameAreaElement = document.getElementById('gameArea');
 let paddleElement = document.getElementById('paddle');
 
-// إنشاء الكائنات باستخدام المتغيرات المعرفة سابقًا
-let paddle = new Paddle(paddleElement, 20, gameArea);
-// let ball = new Ball('ball', 5);
+// Create objects using the defined variables
+let paddle = new Paddle(paddleElement, 20, gameAreaElement);
 
-// إدارة الحركة
+// Manage movement
 document.addEventListener('keydown', function(event) {
     paddle.move(event);
 });
-
-// // حركة الكرة
-// setInterval(function() {
-//     ball.move();
-// }, 20);
