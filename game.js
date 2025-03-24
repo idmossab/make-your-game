@@ -1,6 +1,8 @@
 // Define variables
 let gameAreaElement = document.getElementById('gameArea');
 let paddleElement = document.getElementById('paddle');
+let ball = new Ball(document.getElementById('ball'));
+ball.moveBall();
 const brickWidth = 60;
 const brickHeight = 20;
 const cols = 8;
