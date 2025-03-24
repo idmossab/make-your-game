@@ -52,3 +52,23 @@ function moveBall() {
 
 // Start the ball movement
 moveBall();
+//----------------------------------
+let paddle = document.getElementById('paddle');
+let paddleSpeed = 20; // سرعة حركة الـ Paddle
+
+document.addEventListener('keydown', function(event) {
+    // let paddlePosition = paddle.getBoundingClientRect();
+    let gameArea = document.getElementById('gameArea').getBoundingClientRect();
+
+    if (event.key === 'ArrowLeft') {
+        let newLeft = paddle.offsetLeft - paddleSpeed;
+        if (newLeft > paddleSpeed) {
+            paddle.style.left = newLeft + 'px';
+        }
+    } else if (event.key === 'ArrowRight') {
+        let newLeft = paddle.offsetLeft + paddleSpeed;
+        if (newLeft + paddle.offsetWidth <= gameArea.width + paddleSpeed * 3) {
+            paddle.style.left = newLeft + 'px';
+        }
+    }
+});
