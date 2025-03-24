@@ -54,7 +54,7 @@ function moveBall() {
 moveBall();
 //----------------------------------
 let paddle = document.getElementById('paddle');
-let paddleSpeed = 20; // سرعة حركة الـ Paddle
+let paddleSpeed = 20; //vitesse paddle
 
 document.addEventListener('keydown', function(event) {
     // let paddlePosition = paddle.getBoundingClientRect();
