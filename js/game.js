@@ -1,13 +1,19 @@
 // Define variables
 let gameAreaElement = document.getElementById('gameArea');
 let paddleElement = document.getElementById('paddle');
-let ball = new Ball(document.getElementById('ball'));
-ball.moveBall();
+let ballElement = document.getElementById('ball')
+
 const brickWidth = 60;
 const brickHeight = 20;
 const cols = 8;
 const rows = 4;
 const padding = 17.1; // Padding between bricks
+
+
+let paddle = new Paddle(paddleElement, 20, gameAreaElement);
+let ball = new Ball(ballElement, gameAreaElement);
+
+ball.moveBall();
 
 // Create multiple bricks using rows and columns
 for (let row = 0; row < rows; row++) {
@@ -21,9 +27,6 @@ for (let row = 0; row < rows; row++) {
         brick.render(gameAreaElement); // Add the brick element to the game area
     }
 }
-
-// Create a paddle object using the paddle element
-let paddle = new Paddle(paddleElement, 20, gameAreaElement);
 
 // Handle paddle movement on keydown event
 document.addEventListener('keydown', function(event) {

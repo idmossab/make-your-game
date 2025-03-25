@@ -1,53 +1,50 @@
 class Ball {
-    constructor(ballElement) {
-        // تحديد عنصر الكرة
+    constructor(ballElement, gameAreaElement) {
         this.ball = ballElement;
-        this.dx = 2; // سرعة الكرة في الاتجاه الأفقي
-        this.dy = -2; // سرعة الكرة في الاتجاه الرأسي (صاعدة)
-        this.fps = 0; // عداد الإطارات
-        this.lastFrameTime = performance.now(); // وقت آخر إطار
+        this.gameAreaElement = gameAreaElement;
+        this.dx = 2;
+        this.dy = -2;
+        this.fps = 0; // Frame counter
+        this.lastFrameTime = performance.now(); // Time of the last frame
     }
 
-    // دالة لتحريك الكرة
     moveBall() {
-        let gameArea = document.getElementById('gameArea').getBoundingClientRect(); // الحصول على أبعاد منطقة اللعبة
+        let gameArea = this.gameAreaElement.getBoundingClientRect(); // Get the dimensions of the game area
 
-        // حساب الموقع الجديد للكرة بناءً على السرعة
+        // Calculate the new position of the ball based on its speed
         let newLeft = this.ball.offsetLeft + this.dx;
         let newTop = this.ball.offsetTop + this.dy;
 
-        // تحديث موقع الكرة على الشاشة
+        // Update the ball's position on the screen
         this.ball.style.left = newLeft + 'px';
         this.ball.style.top = newTop + 'px';
 
-        // التحقق من تصادم الكرة بالجدار الأيسر أو الأيمن
+        // Check if the ball hits the left or right wall
         if (newLeft <= 0 || newLeft + this.ball.offsetWidth >= gameArea.width) {
-            this.dx = -this.dx; // عكس الاتجاه الأفقي
+            this.dx = -this.dx;
         }
 
-        // التحقق من تصادم الكرة بالجدار العلوي
+        // Check if the ball hits the top wall
         if (newTop <= 0) {
-            this.dy = -this.dy; // عكس الاتجاه الرأسي
+            this.dy = -this.dy;
         }
 
-        // التحقق من تصادم الكرة بالجدار السفلي (نهاية اللعبة)
+        // Check if the ball hits the bottom wall (game over condition)
         if (newTop + this.ball.offsetHeight >= gameArea.height) {
             alert('Game Over');
-            return; // إيقاف تنفيذ المزيد من الحركات
+            return;
         }
 
-        // حساب عدد الإطارات (FPS)
+        // Calculate the frame rate (FPS)
         this.fps++;
-        let now = performance.now(); // الحصول على الوقت الحالي
-        if (now - this.lastFrameTime >= 1000) { // إذا مرّ ثانية كاملة
-            console.log("FPS:", this.fps); // عرض عدد الإطارات في الثانية في الـ console
-            this.fps = 0; // إعادة تعيين عداد الإطارات
-            this.lastFrameTime = now; // تحديث وقت آخر إطار
+        let now = performance.now(); // Get the current time
+        if (now - this.lastFrameTime >= 1000) { // If one second has passed
+            console.log("FPS:", this.fps); // Log the FPS count to the console
+            this.fps = 0; // Reset the frame counter
+            this.lastFrameTime = now; // Update the last frame time
         }
 
-        // الاستمرار في تحريك الكرة في الإطار التالي
+        // Continue updating the ball's movement in the next animation frame
         requestAnimationFrame(() => this.moveBall());
     }
 }
-
-// لإنشاء الكرة وبدء حركتها
