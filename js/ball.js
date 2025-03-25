@@ -68,6 +68,14 @@ class Ball {
         this.ball.style.left = newLeft + 'px';
         this.ball.style.top = newTop + 'px';
 
+        // Calculate the frame rate (FPS)
+        this.fps++;
+        let now = performance.now(); // Get the current time
+        if (now - this.lastFrameTime >= 1000) { // If one second has passed
+            console.log("FPS:", this.fps); // Log the FPS count to the console
+            this.fps = 0; // Reset the frame counter
+            this.lastFrameTime = now; // Update the last frame time
+        }
         // Continue animation
         requestAnimationFrame(() => this.moveBall());
     }
