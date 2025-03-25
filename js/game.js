@@ -11,7 +11,7 @@ const padding = 17.1; // Padding between bricks
 
 
 let paddle = new Paddle(paddleElement, 20, gameAreaElement);
-let ball = new Ball(ballElement, gameAreaElement);
+let ball = new Ball(ballElement, gameAreaElement, paddleElement);
 
 ball.moveBall();
 
