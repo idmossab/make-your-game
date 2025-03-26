@@ -5,6 +5,7 @@ let ballElement = document.getElementById('ball')
 
 const brickWidth = 60;
 const brickHeight = 20;
+const brickColor = '#33cc33'
 const cols = 8;
 const rows = 4;
 const padding = 17.1; // Padding between bricks
@@ -20,7 +21,7 @@ for (let row = 0; row < rows; row++) {
         const y = row * (brickHeight + padding);
 
         // Create a new brick
-        const brick = new Brick(x, y);
+        const brick = new Brick(x, y, brickWidth, brickHeight, brickColor);
         brick.render(gameAreaElement);
         bricks.push(brick);
     }
