@@ -9,7 +9,7 @@ const brickColor = '#33cc33'
 const cols = 8;
 const rows = 4;
 const padding = 17.1; // Padding between bricks
-const speedPaddle = 20;
+const speedPaddle = 5;
 const bricks = []; // Create an array to store brick objects
 
 // Create multiple bricks using rows and columns
@@ -29,9 +29,18 @@ for (let row = 0; row < rows; row++) {
 let paddle = new Paddle(paddleElement, speedPaddle, gameAreaElement);
 let ball = new Ball(ballElement, gameAreaElement, paddleElement, bricks);
 
-ball.moveBall();
+// ball.moveBall();
 
+let moveLeftRight = false
+let animationId = null;
 // Handle paddle movement on keydown event
 document.addEventListener('keydown', function(event) {
-    paddle.move(event); // Move the paddle based on the key pressed
+    if (!moveLeftRight) {
+        moveLeftRight = true
+        paddle.move(event); // Move the paddle based on the key pressed
+    }
 });
+document.addEventListener('keyup', () => {
+    moveLeftRight = false
+    cancelAnimationFrame(animationId)
+})
