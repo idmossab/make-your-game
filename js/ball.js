@@ -1,82 +1,49 @@
 class Ball {
     constructor(ballElement, gameAreaElement, paddleElement) {
-        this.ball = ballElement;
+        this.ballElement = ballElement;
         this.gameAreaElement = gameAreaElement;
-        this.paddleElement = paddleElement
-        this.dx = 2;
-        this.dy = -2;
-        this.fps = 0; // Frame counter
-        this.lastFrameTime = performance.now(); // Time of the last frame
+        this.paddleElement = paddleElement;
+        this.dx = 2; // Horizontal speed
+        this.dy = -2; // Vertical speed
     }
 
     moveBall() {
+        // Get dimensions
+        let ball = this.ballElement.getBoundingClientRect();
         let gameArea = this.gameAreaElement.getBoundingClientRect();
         let paddle = this.paddleElement.getBoundingClientRect();
-        let ball = this.ball.getBoundingClientRect();
 
-        // Calculate the new position of the ball based on its speed
-        let newLeft = this.ball.offsetLeft + this.dx;
-        let newTop = this.ball.offsetTop + this.dy;
+        // Calculate new position
+        let newLeft = this.ballElement.offsetLeft + this.dx;
+        let newTop = this.ballElement.offsetTop + this.dy;
 
-        // Check if the ball hits the left wall
-        if (newLeft <= 0) {
-            this.dx = Math.abs(this.dx); // Ensure moving right
+        // Check for wall collisions and reverse direction if needed
+        if (newLeft <= 0 || newLeft + ball.width >= gameArea.width) {
+            this.dx = -this.dx;
         }
-
-        // Check if the ball hits the right wall
-        if (newLeft + ball.width >= gameArea.width) {
-            this.dx = -Math.abs(this.dx); // Ensure moving left
-        }
-
-        // Check if the ball hits the top wall
         if (newTop <= 0) {
-            this.dy = Math.abs(this.dy); // Ensure moving down
+            this.dy = -this.dy;
         }
 
-        // Check if the ball hits the bottom wall (game over condition)
+        // Check for paddle collision and reverse direction
+        if (
+            ball.bottom >= paddle.top &&
+            ball.right >= paddle.left &&
+            ball.left <= paddle.right
+        ) {
+            this.dy = -Math.abs(this.dy);
+        }
+
+        // End the game if the ball falls below the game area
         if (newTop + ball.height >= gameArea.height) {
             alert('Game Over');
             return;
         }
 
-        // Paddle collision detection
-        if (
-            // Check if ball's bottom is at or below paddle's top
-            ball.bottom >= paddle.top &&
-            // Check if ball's horizontal range overlaps with paddle
-            ball.right >= paddle.left &&
-            ball.left <= paddle.right
-        ) {
-            // Reverse vertical direction when hitting paddle
-            this.dy = -Math.abs(this.dy); // Ensure upward movement
+        // Update the ball's position and continue the animation
+        this.ballElement.style.left = newLeft + 'px';
+        this.ballElement.style.top = newTop + 'px';
 
-            // Optional: Add some horizontal variation
-            let paddleCenter = paddle.left + (paddle.width / 2);
-            let ballCenter = ball.left + (ball.width / 2);
-
-            // Add slight horizontal angle based on where the ball hits the paddle
-            if (ballCenter < paddleCenter) {
-                // Ball hits left side of paddle
-                this.dx = -Math.abs(this.dx);
-            } else {
-                // Ball hits right side of paddle
-                this.dx = Math.abs(this.dx);
-            }
-        }
-
-        // Update ball position
-        this.ball.style.left = newLeft + 'px';
-        this.ball.style.top = newTop + 'px';
-
-        // Calculate the frame rate (FPS)
-        this.fps++;
-        let now = performance.now(); // Get the current time
-        if (now - this.lastFrameTime >= 1000) { // If one second has passed
-            console.log("FPS:", this.fps); // Log the FPS count to the console
-            this.fps = 0; // Reset the frame counter
-            this.lastFrameTime = now; // Update the last frame time
-        }
-        // Continue animation
         requestAnimationFrame(() => this.moveBall());
     }
 }
