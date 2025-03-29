@@ -1,37 +1,52 @@
 // Define variables
 let gameAreaElement = document.getElementById('gameArea');
 let paddleElement = document.getElementById('paddle');
-let ballElement = document.getElementById('ball')
+let ballElement = document.getElementById('ball');
 
-const brickWidth = 67;
-const brickHeight = 20;
-const brickColor = '#33cc33'
+const gameAreaWidth = gameAreaElement.clientWidth;
+const gameAreaHeight = gameAreaElement.clientHeight;
+
 const cols = 7;
 const rows = 4;
-const padding = 17.1; // Padding between bricks
-const speedPaddle = 5;
+const brickColor = '#33cc33';
 const bricks = []; // Create an array to store brick objects
-let moveLeftRight = false
+let moveLeftRight = false;
 let animationId = null;
 
-// Create multiple bricks using rows and columns
-for (let row = 0; row < rows; row++) {
-    for (let col = 0; col < cols; col++) {
+// Recalculate brick dimensions to cover the entire game area
+const totalPaddingPercent = 16; // Total space allocated for paddings as a percentage
+const availableWidthPercent = 100 - totalPaddingPercent; // Space available after subtracting paddings
+const brickWidthPercent = availableWidthPercent / cols; // Distribute available space evenly across the number of columns
+const paddingPercent = totalPaddingPercent / (cols + 1); // Distribute padding evenly between columns
+const brickHeightPercent = 5; // Percentage of game area height allocated to brick height
+const verticalPaddingPercent = 3; // Vertical padding between rows
+const speedPaddle = 5;
 
-        const x = col * (brickWidth + padding);
-        const y = row * (brickHeight + padding);
+function createBricks() {
+    // Calculate available space and paddings
+    const horizontalPadding = paddingPercent;
 
-        // Create a new brick
-        const brick = new Brick(x, y, brickWidth, brickHeight, brickColor);
-        brick.render(gameAreaElement);
-        bricks.push(brick);
+    // Create multiple bricks using rows and columns
+    for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+            const x = horizontalPadding + col * (brickWidthPercent + horizontalPadding);
+            const y = verticalPaddingPercent + row * (brickHeightPercent + verticalPaddingPercent);
+
+            // Create a new brick
+            const brick = new Brick(x, y, brickWidthPercent, brickHeightPercent, brickColor);
+            brick.render(gameAreaElement);
+            bricks.push(brick);
+        }
     }
 }
+
+
+createBricks();
 
 let paddle = new Paddle(paddleElement, speedPaddle, gameAreaElement);
 let ball = new Ball(ballElement, gameAreaElement, paddleElement, bricks);
 
-// ball.moveBall();
+ball.moveBall();
 
 
 // Handle paddle movement on keydown event

@@ -11,11 +11,11 @@ class Brick {
     createBrickElement() {
         const brick = document.createElement('div');
         brick.classList.add('brick');
-        brick.style.width = `${this.width}px`;
-        brick.style.height = `${this.height}px`;
+        brick.style.width = `${this.width}%`;
+        brick.style.height = `${this.height}%`;
         brick.style.backgroundColor = this.color;
-        brick.style.left = `${this.x}px`;
-        brick.style.top = `${this.y}px`;
+        brick.style.left = `${this.x}%`;
+        brick.style.top = `${this.y}%`;
         return brick;
     }
 
