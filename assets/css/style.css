@@ -22,7 +22,8 @@ body {
     height: 20px;
     background-color: #0099ff;
     position: absolute;
-    bottom: 0;
+    bottom: 5px;
+    border-radius: 15px;
     left: 50%;
     margin-bottom: 10px;
     border-radius: 15px;
@@ -35,16 +36,9 @@ body {
     background-color: #ff0000;
     border-radius: 50%;
     position: absolute;
-    bottom: 40px;
+    bottom: 26px;
     left: 50%;
     transform: translateX(-50%);
-}
-
-.brick {
-    width: 60px;
-    height: 20px;
-    background-color: #33cc33;
-    position: absolute;
 }
 
 button {
