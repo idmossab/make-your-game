@@ -38,7 +38,6 @@ body {
     max-width: 20px;
     height: 5vw;
     max-height: 20px;
-    /* aspect-ratio: 1 / 1; يضمن الشكل دائري دائمًا */
     background-color: #ff0000;
     border-radius: 50%;
     position: absolute;
@@ -73,7 +72,6 @@ button:hover {
         width: 95vw;
         height: 50vh;
     }
-
 }
 
 @media (max-width: 480px) {
