@@ -14,10 +14,8 @@ class Brick {
         brick.style.width = `${this.width}px`;
         brick.style.height = `${this.height}px`;
         brick.style.backgroundColor = this.color;
-        brick.style.position = 'absolute';
         brick.style.left = `${this.x}px`;
         brick.style.top = `${this.y}px`;
-        brick.style.margin = `15px`;
         return brick;
     }
 
