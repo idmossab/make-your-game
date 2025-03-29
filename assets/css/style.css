@@ -34,10 +34,11 @@ body {
 }
 
 #ball {
-    width: 5%;
+    width: 5vw;
     max-width: 20px;
-    height: 5%;
+    height: 5vw;
     max-height: 20px;
+    aspect-ratio: 1 / 1; /* يضمن الشكل دائري دائمًا */
     background-color: #ff0000;
     border-radius: 50%;
     position: absolute;
@@ -72,6 +73,10 @@ button:hover {
         width: 95vw;
         height: 50vh;
     }
+    #ball {
+        width: 6vw;
+        height: 6vw;
+    }
 }
 
 @media (max-width: 480px) {
@@ -80,6 +85,10 @@ button:hover {
     }
     #paddle {
         width: 25%;
+    }
+    #ball {
+        width: 8vw;
+        height: 8vw;
     }
     button {
         padding: 8px 16px;
