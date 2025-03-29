@@ -3,10 +3,10 @@ let gameAreaElement = document.getElementById('gameArea');
 let paddleElement = document.getElementById('paddle');
 let ballElement = document.getElementById('ball')
 
-const brickWidth = 60;
+const brickWidth = 67;
 const brickHeight = 20;
 const brickColor = '#33cc33'
-const cols = 8;
+const cols = 7;
 const rows = 4;
 const padding = 17.1; // Padding between bricks
 const speedPaddle = 5;

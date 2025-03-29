@@ -17,12 +17,9 @@ class Paddle {
         } else
         if (event.key === "ArrowRight") {
             let newLeft = this.element.offsetLeft + this.speed;
-            console.log(newLeft, this.speed, element1.width, gameArea.width)
+            // console.log(newLeft, this.speed, element1.width, gameArea.width)
 
-            if (
-                newLeft <=
-                gameArea.width - element1.width / 2
-            ) {
+            if (newLeft <= gameArea.width - element1.width / 2) {
                 this.element.style.left = newLeft + "px";
             }
         }
