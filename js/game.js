@@ -45,7 +45,7 @@ createBricks();
 let paddle = new Paddle(paddleElement, speedPaddle, gameAreaElement);
 let ball = new Ball(ballElement, gameAreaElement, paddleElement, bricks);
 
-// ball.moveBall();
+ball.moveBall();
 
 
 // Handle paddle movement on keydown event

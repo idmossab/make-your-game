@@ -52,9 +52,16 @@ class Ball {
         let newLeft = this.ballElement.offsetLeft + this.dx;
         let newTop = this.ballElement.offsetTop + this.dy;
 
+        // convert current position to %
+        const currentLeftPercent = (this.ballElement.offsetLeft / gameArea.width) * 100;
+        const currentTopPercent = (this.ballElement.offsetTop / gameArea.height) * 100;
+
         // Check for wall collisions and reverse direction if needed
-        if (newLeft <= 0 || newLeft + ball.width >= gameArea.width) {
-            this.dx = -this.dx;
+        if (newLeft <= ball.width/2 ) {
+            this.dx = Math.abs(this.dx);
+        }
+        if ( newLeft >= gameArea.width-ball.width/2) {
+            this.dx = -Math.abs(this.dx);
         }
         if (newTop <= 0) {
             this.dy = -this.dy;
