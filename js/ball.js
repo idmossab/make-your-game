@@ -52,15 +52,11 @@ class Ball {
         let newLeft = this.ballElement.offsetLeft + this.dx;
         let newTop = this.ballElement.offsetTop + this.dy;
 
-        // convert current position to %
-        const currentLeftPercent = (this.ballElement.offsetLeft / gameArea.width) * 100;
-        const currentTopPercent = (this.ballElement.offsetTop / gameArea.height) * 100;
-
         // Check for wall collisions and reverse direction if needed
-        if (newLeft <= ball.width/2 ) {
+        if (newLeft <= ball.width / 2) {
             this.dx = Math.abs(this.dx);
         }
-        if ( newLeft >= gameArea.width-ball.width/2) {
+        if (newLeft >= gameArea.width - ball.width / 2) {
             this.dx = -Math.abs(this.dx);
         }
         if (newTop <= 0) {
@@ -68,13 +64,26 @@ class Ball {
         }
 
         // Check for paddle collision and reverse direction
+        // Check for paddle collision and adjust angle
         if (
             ball.bottom >= paddle.top &&
             ball.right >= paddle.left &&
             ball.left <= paddle.right
         ) {
-            this.dy = -Math.abs(this.dy);
+            let paddleCenter = paddle.left + paddle.width / 2;
+            let ballCenter = ball.left + ball.width / 2;
+
+            let distanceFromCenter = (ballCenter - paddleCenter) / (paddle.width / 2);
+
+            // تحويل المسافة إلى زاوية (بين -45° و 45°)
+            let angle = distanceFromCenter * (Math.PI / 4); // 45° بالـ Radians
+
+            // تحديث سرعة الكرة بالزاوية الجديدة
+            let speed = Math.sqrt(this.dx ** 2 + this.dy ** 2); // نحافظ على نفس السرعة
+            this.dx = speed * Math.sin(angle);
+            this.dy = -Math.abs(speed * Math.cos(angle)); // يجب أن تبقى الكرة تتحرك للأعلى
         }
+
         // Check for brick collisions
         if (!this.checkBrickCollision()) {
             return;
