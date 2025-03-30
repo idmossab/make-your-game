@@ -64,25 +64,23 @@ class Ball {
         }
 
         // Check for paddle collision and reverse direction
-        // Check for paddle collision and adjust angle
+        // Check for paddle collision
         if (
             ball.bottom >= paddle.top &&
             ball.right >= paddle.left &&
             ball.left <= paddle.right
         ) {
+            // حساب موقع الاصطدام بالنسبة للمضرب
             let paddleCenter = paddle.left + paddle.width / 2;
             let ballCenter = ball.left + ball.width / 2;
 
-            let distanceFromCenter = (ballCenter - paddleCenter) / (paddle.width / 2);
+            let impactPoint = (ballCenter - paddleCenter) / (paddle.width / 2);
 
-            // تحويل المسافة إلى زاوية (بين -45° و 45°)
-            let angle = distanceFromCenter * (Math.PI / 4); // 45° بالـ Radians
-
-            // تحديث سرعة الكرة بالزاوية الجديدة
-            let speed = Math.sqrt(this.dx ** 2 + this.dy ** 2); // نحافظ على نفس السرعة
-            this.dx = speed * Math.sin(angle);
-            this.dy = -Math.abs(speed * Math.cos(angle)); // يجب أن تبقى الكرة تتحرك للأعلى
+            // ضبط سرعة الكرة بعد الاصطدام
+            this.dx = impactPoint * 3;  // 5 هي أقصى سرعة أفقية
+            this.dy = -Math.abs(this.dy);  // الكرة ترتد لأعلى
         }
+
 
         // Check for brick collisions
         if (!this.checkBrickCollision()) {
