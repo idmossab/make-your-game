@@ -77,8 +77,14 @@ class Ball {
             let impactPoint = (ballCenter - paddleCenter) / (paddle.width / 2);
 
             // ضبط سرعة الكرة بعد الاصطدام
-            this.dx = impactPoint * 3;  // 5 هي أقصى سرعة أفقية
-            this.dy = -Math.abs(this.dy);  // الكرة ترتد لأعلى
+            let maxAngle = Math.PI / 3; // أقصى زاوية (60 درجة)
+
+            let bounceAngle = impactPoint * maxAngle; // حساب الزاوية بناءً على الاصطدام
+        
+            let speed = Math.sqrt(this.dx * this.dx + this.dy * this.dy); // تثبيت السرعة
+        
+            this.dx = speed * Math.sin(bounceAngle); // تحديد السرعة الأفقية
+            this.dy = -Math.abs(speed * Math.cos(bounceAngle)); // تحديد السرعة العمودية
         }
 
 
