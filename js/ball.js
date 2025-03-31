@@ -63,14 +63,12 @@ class Ball {
             this.dy = -this.dy;
         }
 
-        // Check for paddle collision and reverse direction
         // Check for paddle collision
         if (
             ball.bottom >= paddle.top &&
             ball.right >= paddle.left &&
             ball.left <= paddle.right
         ) {
-            // حساب موقع الاصطدام بالنسبة للمضرب
             let paddleCenter = paddle.left + paddle.width / 2;
             let ballCenter = ball.left + ball.width / 2;
             console.log("paddleCenter :", paddleCenter)
@@ -79,10 +77,8 @@ class Ball {
             let impactPoint = (ballCenter - paddleCenter) / (paddle.width / 2);
             console.log("imp :", impactPoint)
 
-
-            // ضبط سرعة الكرة بعد الاصطدام
-            this.dx = impactPoint * 3;  // 5 هي أقصى سرعة أفقية
-            this.dy = -Math.abs(this.dy);  // الكرة ترتد لأعلى
+            this.dx = impactPoint * 3; 
+            this.dy = -Math.abs(this.dy); 
         }
 
 
