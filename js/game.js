@@ -12,8 +12,8 @@ const speedPaddle = 5;
 let moveLeftRight = false;
 let animationId = null;
 // Brick Dimensions and Paddings
-const cols = 7;
-const rows = 4;
+const cols = 3;
+const rows = 1;
 const brickColor = '#33cc33';
 const bricks = []; // Create an array to store brick objects
 const totalPaddingPercent = 16; 
