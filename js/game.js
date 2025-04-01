@@ -104,6 +104,16 @@ function restartGame() {
     moveLeftRight = false;
     isPaused = false;
     pauseButton.textContent = 'Pause';
+    // Clear existing bricks
+    bricks.forEach(brick => {
+        if (brick.element && brick.element.parentNode) {
+            brick.element.parentNode.removeChild(brick.element);
+        }
+    });
+    bricks.length = 0;
+
+    // Recreate bricks
+    createBricks();
     // Reset ball position (center above paddle)
     const gameAreaRect = gameAreaElement.getBoundingClientRect();
     paddleElement.style.left = (gameAreaRect.width / 2) + 'px';
