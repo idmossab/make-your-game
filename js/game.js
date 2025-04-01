@@ -96,12 +96,18 @@ function restartGame() {
         cancelAnimationFrame(animationIdBall);
         animationIdBall = null;
     }
+    if (animationIdPaddle) {
+        cancelAnimationFrame(animationIdPaddle);
+        animationIdPaddle = null;
+    }
     // Reset game state
+    moveLeftRight = false;
     isPaused = false;
     pauseButton.textContent = 'Pause';
      // Reset ball position (center above paddle)
      const gameAreaRect = gameAreaElement.getBoundingClientRect();
-     ballElement.style.left = (gameAreaRect.width / 2) - (ballElement.offsetWidth / 2) + 'px';
+     paddleElement.style.left = (gameAreaRect.width / 2)  + 'px';
+     ballElement.style.left = (gameAreaRect.width / 2) + 'px';
      ballElement.style.top = (gameAreaRect.height - 55) + 'px';
     // Create new ball instance with updated bricks
     ball = new Ball(ballElement, gameAreaElement, paddleElement, bricks);
