@@ -60,7 +60,7 @@ class Ball {
             this.dx = -Math.abs(this.dx);
         }
         if (newTop <= 0) {
-            this.dy = -this.dy;
+            this.dy =Math.abs(this.dy);
         }
 
         // Check for paddle collision
@@ -71,14 +71,32 @@ class Ball {
         ) {
             let paddleCenter = paddle.left + paddle.width / 2;
             let ballCenter = ball.left + ball.width / 2;
-            console.log("paddleCenter :", paddleCenter)
+            console.log("paddleCenter :", ballCenter - paddleCenter)
             console.log("ballCenter :", ballCenter)
 
-            let impactPoint = (ballCenter - paddleCenter) / (paddle.width / 2);
+            let impactPoint = (ballCenter - paddleCenter) / (paddle.width / 2);//value between -1_1
             console.log("imp :", impactPoint)
 
-            this.dx = impactPoint * 3; 
-            this.dy = -Math.abs(this.dy); 
+            let speed = Math.sqrt(this.dx * this.dx + this.dy * this.dy); // theoreme de pythagore
+            let angle = Math.PI / 4 * impactPoint; // Max angle of ±45 degrees
+
+            // Set new dx and dy while maintaining speed
+            /*
+                 y  |    
+                    |   * (ball)
+                    |  /  
+                    | / θ (angle)
+                    |/_________ x
+            
+            cos(θ)= adjacent/hypotenuse
+            sin(𝜃)=opposite/hypotenuse 
+            */
+            this.dx = speed * Math.sin(angle);
+            this.dy = -speed * Math.cos(angle);
+
+            //error vitesse
+            // this.dx = impactPoint * 3; 
+            // this.dy = -Math.abs(this.dy); 
         }
 
 
