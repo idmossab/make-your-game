@@ -14,7 +14,7 @@ const speedPaddle = 5;
 let moveLeftRight = false;
 let animationIdPaddle = null;
 let animationIdBall = null;
-let isPaused=false;
+let isPaused = false;
 // Brick Dimensions and Paddings
 const cols = 3;
 const rows = 1;
@@ -77,12 +77,33 @@ function togglePause() {
         if (animationIdBall) {
             cancelAnimationFrame(animationIdBall);
             animationIdBall = null;
-            isPaused=true
+            isPaused = true
         }
     } else {
         // Game is now resumed
         pauseButton.textContent = 'Pause';
-        isPaused=false
+        isPaused = false
         ball.moveBall();
     }
+}
+
+// Reset game state
+restartButton.addEventListener('click', restartGame);
+
+function restartGame() {
+    // Stop current animation
+    if (animationIdBall) {
+        cancelAnimationFrame(animationIdBall);
+        animationIdBall = null;
+    }
+    // Reset game state
+    isPaused = false;
+    pauseButton.textContent = 'Pause';
+     // Reset ball position (center above paddle)
+     const gameAreaRect = gameAreaElement.getBoundingClientRect();
+     ballElement.style.left = (gameAreaRect.width / 2) - (ballElement.offsetWidth / 2) + 'px';
+     ballElement.style.top = (gameAreaRect.height - 55) + 'px';
+    // Create new ball instance with updated bricks
+    ball = new Ball(ballElement, gameAreaElement, paddleElement, bricks);
+    ball.moveBall();
 }
