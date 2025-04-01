@@ -12,7 +12,7 @@ const restartButton = document.getElementById('restartButton');
 
 const speedPaddle = 5;
 let moveLeftRight = false;
-let animationId = null;
+let animationIdPaddle = null;
 // Brick Dimensions and Paddings
 const cols = 3;
 const rows = 1;
@@ -50,6 +50,7 @@ let ball = new Ball(ballElement, gameAreaElement, paddleElement, bricks);
 // Handle ball movement 
 ball.moveBall();
 
+// pauseButton.addEventListener('click', togglePause);
 
 // Handle paddle movement
 function handleKeyDown(event) {
@@ -61,7 +62,7 @@ function handleKeyDown(event) {
 
 function handleKeyUp() {
     moveLeftRight = false;
-    cancelAnimationFrame(animationId);
+    cancelAnimationFrame(animationIdPaddle);
 }
 
 document.addEventListener('keydown', handleKeyDown);

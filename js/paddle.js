@@ -23,6 +23,6 @@ class Paddle {
                 this.element.style.left = newLeft + "px";
             }
         }
-        animationId = requestAnimationFrame(() => this.move(event));
+        animationIdPaddle = requestAnimationFrame(() => this.move(event));
     }
 }
