@@ -78,7 +78,7 @@ class Ball {
             console.log("imp :", impactPoint)
 
             let speed = Math.sqrt(this.dx * this.dx + this.dy * this.dy); // theoreme de pythagore
-            let angle = Math.PI / 4 * impactPoint; // Max angle of ±45 degrees
+            let angle = Math.PI / 4 * impactPoint; // Max angle of ±45 degrees pi radians=180 degrés
 
             // Set new dx and dy while maintaining speed
             /*
