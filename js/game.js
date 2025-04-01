@@ -13,6 +13,8 @@ const restartButton = document.getElementById('restartButton');
 const speedPaddle = 5;
 let moveLeftRight = false;
 let animationIdPaddle = null;
+let animationIdBall = null;
+let isPaused=false;
 // Brick Dimensions and Paddings
 const cols = 3;
 const rows = 1;
@@ -50,7 +52,23 @@ let ball = new Ball(ballElement, gameAreaElement, paddleElement, bricks);
 // Handle ball movement 
 ball.moveBall();
 
-// pauseButton.addEventListener('click', togglePause);
+pauseButton.addEventListener('click', togglePause);
+function togglePause() {
+    if (!isPaused) {
+        // Game is now paused
+        pauseButton.textContent = 'Resume';
+        if (animationIdBall) {
+            cancelAnimationFrame(animationIdBall);
+            animationIdBall = null;
+            isPaused=true
+        }
+    } else {
+        // Game is now resumed
+        pauseButton.textContent = 'Pause';
+        isPaused=false
+        ball.moveBall();
+    }
+}
 
 // Handle paddle movement
 function handleKeyDown(event) {

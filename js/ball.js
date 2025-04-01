@@ -114,6 +114,6 @@ class Ball {
         this.ballElement.style.left = newLeft + 'px';
         this.ballElement.style.top = newTop + 'px';
 
-        requestAnimationFrame(() => this.moveBall());
+        animationIdBall= requestAnimationFrame(() => this.moveBall());
     }
 }
