@@ -2,6 +2,8 @@
 let gameAreaElement = document.getElementById('gameArea');
 let paddleElement = document.getElementById('paddle');
 let ballElement = document.getElementById('ball');
+const pauseButton = document.getElementById('pauseButton');
+const restartButton = document.getElementById('restartButton');
 
 // const gameAreaWidth = gameAreaElement.clientWidth;
 // const gameAreaHeight = gameAreaElement.clientHeight;
@@ -16,8 +18,8 @@ const cols = 3;
 const rows = 1;
 const brickColor = '#33cc33';
 const bricks = []; // Create an array to store brick objects
-const totalPaddingPercent = 16; 
-const availableWidthPercent = 100 - totalPaddingPercent; 
+const totalPaddingPercent = 16;
+const availableWidthPercent = 100 - totalPaddingPercent;
 const brickWidthPercent = availableWidthPercent / cols;
 const brickHeightPercent = 5;
 const paddingPercent = totalPaddingPercent / (cols + 1);
@@ -25,7 +27,7 @@ const paddingPercent = totalPaddingPercent / (cols + 1);
 function createBricks() {
     // Calculate paddings x,y
     const horizontalPadding = paddingPercent;
-    const verticalPadding = paddingPercent+1;
+    const verticalPadding = paddingPercent + 1;
 
     // Create multiple bricks using rows and columns
     for (let row = 0; row < rows; row++) {
@@ -45,10 +47,11 @@ createBricks();
 let paddle = new Paddle(paddleElement, speedPaddle, gameAreaElement);
 let ball = new Ball(ballElement, gameAreaElement, paddleElement, bricks);
 
+// Handle ball movement 
 ball.moveBall();
 
 
-// Handle paddle movement on keydown event
+// Handle paddle movement
 function handleKeyDown(event) {
     if (!moveLeftRight) {
         moveLeftRight = true;
