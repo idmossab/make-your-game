@@ -49,8 +49,25 @@ createBricks();
 let paddle = new Paddle(paddleElement, speedPaddle, gameAreaElement);
 let ball = new Ball(ballElement, gameAreaElement, paddleElement, bricks);
 
-// Handle ball movement 
+// ball movement 
 ball.moveBall();
+
+// Handle paddle movement
+document.addEventListener('keydown', handleKeyDown);
+document.addEventListener('keyup', handleKeyUp);
+
+function handleKeyDown(event) {
+    if (!moveLeftRight) {
+        moveLeftRight = true;
+        paddle.move(event);
+    }
+}
+function handleKeyUp() {
+    moveLeftRight = false;
+    cancelAnimationFrame(animationIdPaddle);
+}
+
+// pauseButton
 pauseButton.addEventListener('click', togglePause);
 
 function togglePause() {
@@ -68,19 +85,4 @@ function togglePause() {
         isPaused=false
         ball.moveBall();
     }
-}
-
-// Handle paddle movement
-document.addEventListener('keydown', handleKeyDown);
-document.addEventListener('keyup', handleKeyUp);
-
-function handleKeyDown(event) {
-    if (!moveLeftRight) {
-        moveLeftRight = true;
-        paddle.move(event);
-    }
-}
-function handleKeyUp() {
-    moveLeftRight = false;
-    cancelAnimationFrame(animationIdPaddle);
 }
