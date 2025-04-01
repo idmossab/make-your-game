@@ -51,8 +51,8 @@ let ball = new Ball(ballElement, gameAreaElement, paddleElement, bricks);
 
 // Handle ball movement 
 ball.moveBall();
-
 pauseButton.addEventListener('click', togglePause);
+
 function togglePause() {
     if (!isPaused) {
         // Game is now paused
@@ -71,17 +71,16 @@ function togglePause() {
 }
 
 // Handle paddle movement
+document.addEventListener('keydown', handleKeyDown);
+document.addEventListener('keyup', handleKeyUp);
+
 function handleKeyDown(event) {
     if (!moveLeftRight) {
         moveLeftRight = true;
         paddle.move(event);
     }
 }
-
 function handleKeyUp() {
     moveLeftRight = false;
     cancelAnimationFrame(animationIdPaddle);
 }
-
-document.addEventListener('keydown', handleKeyDown);
-document.addEventListener('keyup', handleKeyUp);
