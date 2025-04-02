@@ -18,7 +18,14 @@ body {
     background-color: #f1f1f1;
     overflow: hidden;
 }
-
+ul{
+    list-style-type: none;
+    display:flex;
+}
+li{
+    padding-left: 20%;
+    margin-bottom: 5%;
+}
 #paddle {
     width: 16%;
     max-width: 100px;

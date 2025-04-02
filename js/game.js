@@ -44,13 +44,13 @@ function createBricks() {
     }
 }
 
-createBricks();
+ createBricks();
 
 let paddle = new Paddle(paddleElement, speedPaddle, gameAreaElement);
 let ball = new Ball(ballElement, gameAreaElement, paddleElement, bricks);
 
 // ball movement 
-ball.moveBall();
+// ball.moveBall();
 
 // Handle paddle movement
 document.addEventListener('keydown', handleKeyDown);
