@@ -109,7 +109,7 @@ class Ball {
         // End the game if the ball falls below the game area
         if (newTop + ball.height >= gameArea.height) {
             hearts--;
-            heartsElement.textContent = `Heart: ${hearts}`;
+            heartsElement.textContent = `❤ ${hearts}`;
             
             if (hearts === 0) {
                 alert('Game Over');

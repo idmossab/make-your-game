@@ -128,7 +128,7 @@ function restartGame() {
     ball.moveBall();
 }
 
-let timeLeft = 180; // 3 دقائق
+let timeLeft = 180; 
 let xp = 0;
 let hearts = 3;
 
