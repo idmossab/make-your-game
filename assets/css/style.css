@@ -8,7 +8,29 @@ body {
     height: 100vh;
     background-color: #333;
 }
+.start {
+    width: 90vw;
+    max-width: 600px;
+    padding: 10px 0;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    border-radius: 10px;
+    font-weight: bold;
+}
 
+ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    margin: 0;
+}
+
+li {
+    padding: 5px 15px;
+    font-size: 18px;
+}
 #gameArea {
     width: 90vw;
     max-width: 600px;
@@ -17,28 +39,6 @@ body {
     position: relative;
     background-color: #f1f1f1;
     overflow: hidden;
-}
-
-.start {
-    background-color: #bb1e1e;
-    color: white;
-    width: 100%;
-    padding: 5px 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 10;
-}
-ul{
-    list-style-type: none;
-    display: flex;
-    justify-content: space-around;
-    padding: 0;
-    margin: 0;
-}
-li{
-    padding: 5px 10px;
-    text-align: center;
 }
 #paddle {
     width: 16%;
@@ -68,7 +68,6 @@ li{
 }
 
 .brick {
-    margin-top: 6%;
     position: absolute;
     box-sizing: border-box;
     border-radius: 3px;
@@ -95,9 +94,6 @@ button:hover {
         width: 95vw;
         height: 50vh;
     }
-    .brick {
-        margin-top: 7%;
-    }
 }
 
 @media (max-width: 480px) {
@@ -114,8 +110,5 @@ button:hover {
     button {
         padding: 8px 16px;
         font-size: 14px;
-    }
-    .brick {
-        margin-top: 10%;
     }
 }

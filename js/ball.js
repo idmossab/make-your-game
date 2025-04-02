@@ -108,10 +108,19 @@ class Ball {
         }
         // End the game if the ball falls below the game area
         if (newTop + ball.height >= gameArea.height) {
-            alert('Game Over');
-            return;
+            hearts--;
+            heartsElement.textContent = `Heart: ${hearts}`;
+            
+            if (hearts === 0) {
+                alert('Game Over');
+                clearInterval(timerInterval);
+                return;
+            }
+        
+            ballElement.style.left = (gameArea.width / 2) + 'px';
+            ballElement.style.top = (gameArea.height - 55) + 'px';
+            this.dy = -this.dy;
         }
-
         // Update the ball's position and continue the animation
         this.ballElement.style.left = newLeft + 'px';
         this.ballElement.style.top = newTop + 'px';

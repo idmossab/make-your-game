@@ -54,7 +54,7 @@ let paddle = new Paddle(paddleElement, speedPaddle, gameAreaElement);
 let ball = new Ball(ballElement, gameAreaElement, paddleElement, bricks);
 
 // ball movement 
-// ball.moveBall();
+ball.moveBall();
 
 // Handle paddle movement
 document.addEventListener('keydown', handleKeyDown);
@@ -127,3 +127,22 @@ function restartGame() {
     ball = new Ball(ballElement, gameAreaElement, paddleElement, bricks);
     ball.moveBall();
 }
+
+let timeLeft = 180; // 3 دقائق
+let xp = 0;
+let hearts = 3;
+
+function updateTimer() {
+    if (timeLeft > 0) {
+        timeLeft--;
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+        timerElement.textContent = `Time: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    } else {
+        alert("Time's up! Game Over.");
+        clearInterval(timerInterval);
+    }
+}
+
+const timerInterval = setInterval(updateTimer, 1000);
+
