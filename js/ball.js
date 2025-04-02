@@ -25,7 +25,9 @@ class Ball {
                 this.bricks[i].destroy();
                 this.bricks.splice(i, 1);
                 this.remainingBricks--;
-
+                //update xp
+                xp += 100;
+                xpElement.textContent = `XP: ${xp}`;
                 // Reverse ball direction
                 this.dy = -this.dy;
 
@@ -60,7 +62,7 @@ class Ball {
             this.dx = -Math.abs(this.dx);
         }
         if (newTop <= 0) {
-            this.dy =Math.abs(this.dy);
+            this.dy = Math.abs(this.dy);
         }
 
         // Check for paddle collision
@@ -114,6 +116,6 @@ class Ball {
         this.ballElement.style.left = newLeft + 'px';
         this.ballElement.style.top = newTop + 'px';
 
-        animationIdBall= requestAnimationFrame(() => this.moveBall());
+        animationIdBall = requestAnimationFrame(() => this.moveBall());
     }
 }
