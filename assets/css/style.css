@@ -18,13 +18,27 @@ body {
     background-color: #f1f1f1;
     overflow: hidden;
 }
+
+.start {
+    background-color: #bb1e1e;
+    color: white;
+    width: 100%;
+    padding: 5px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
 ul{
     list-style-type: none;
-    display:flex;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
 }
 li{
-    padding-left: 20%;
-    margin-bottom: 5%;
+    padding: 5px 10px;
+    text-align: center;
 }
 #paddle {
     width: 16%;
@@ -54,9 +68,11 @@ li{
 }
 
 .brick {
+    margin-top: 6%;
     position: absolute;
     box-sizing: border-box;
     border-radius: 3px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 button {
@@ -79,6 +95,9 @@ button:hover {
         width: 95vw;
         height: 50vh;
     }
+    .brick {
+        margin-top: 7%;
+    }
 }
 
 @media (max-width: 480px) {
@@ -95,5 +114,8 @@ button:hover {
     button {
         padding: 8px 16px;
         font-size: 14px;
+    }
+    .brick {
+        margin-top: 10%;
     }
 }

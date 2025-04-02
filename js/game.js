@@ -16,8 +16,8 @@ let animationIdPaddle = null;
 let animationIdBall = null;
 let isPaused = false;
 // Brick Dimensions and Paddings
-const cols = 3;
-const rows = 1;
+const cols = 6;
+const rows = 3;
 const brickColor = '#33cc33';
 const bricks = []; // Create an array to store brick objects
 const totalPaddingPercent = 16;
