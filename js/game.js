@@ -54,8 +54,17 @@ let paddle = new Paddle(paddleElement, speedPaddle, gameAreaElement);
 let ball = new Ball(ballElement, gameAreaElement, paddleElement, bricks);
 
 // ball movement 
-ball.moveBall();
+document.addEventListener("keydown", function (event) {
+    if (event.code === "Space") {
+        startGame();
+    }
+});
 
+function startGame() {
+    let startMessage = document.getElementById("startMessage");
+    startMessage.style.display = "none"; 
+    ball.moveBall();
+}
 // Handle paddle movement
 document.addEventListener('keydown', handleKeyDown);
 document.addEventListener('keyup', handleKeyUp);
