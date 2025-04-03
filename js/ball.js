@@ -111,7 +111,7 @@ class Ball {
             hearts--;
             heartsElement.textContent = `❤ ${hearts}`;
             
-            if (hearts === 0) {
+            if (hearts <= 0) {
                 alert('Game Over');
                 clearInterval(timerInterval);
                 return;
@@ -119,7 +119,7 @@ class Ball {
         
             ballElement.style.left = (gameArea.width / 2) + 'px';
             ballElement.style.top = (gameArea.height - 55) + 'px';
-            this.dy = -this.dy;
+            ball.moveBall();
         }
         // Update the ball's position and continue the animation
         this.ballElement.style.left = newLeft + 'px';
