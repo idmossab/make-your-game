@@ -1,11 +1,13 @@
 class GameManager {
-    constructor(gameAreaElement, bricks, pauseButton, ball) {
+    constructor(gameAreaElement, paddleElement, ballElement, bricks, pauseButton, restartButton) {
         this.gameAreaElement = gameAreaElement;
+        this.paddleElement = paddleElement;
+        this.ballElement = ballElement;
         this.bricks = bricks;
         this.pauseButton = pauseButton;
-        this.ball = ball;
-
+        this.restartButton = restartButton;
         this.pauseButton.addEventListener('click', () => this.togglePause());
+        this.restartButton.addEventListener('click', () => this.restartGame());
     }
 
     // This method will be called to create the bricks
@@ -46,5 +48,38 @@ class GameManager {
             isPaused = false
             ball.moveBall();
         }
+    }
+    restartGame() {
+        // Stop current animation
+        if (animationIdBall) {
+            cancelAnimationFrame(animationIdBall);
+            animationIdBall = null;
+        }
+        if (animationIdPaddle) {
+            cancelAnimationFrame(animationIdPaddle);
+            animationIdPaddle = null;
+        }
+        // Reset game state
+        moveLeftRight = false;
+        isPaused = false;
+        this.pauseButton.textContent = 'Pause';
+        // Clear existing bricks
+        this.bricks.forEach(brick => {
+            if (brick.element && brick.element.parentNode) {
+                brick.element.parentNode.removeChild(brick.element);
+            }
+        });
+        this.bricks.length = 0;
+
+        // Recreate bricks
+        this.createBricks();
+        // Reset ball position (center above paddle)
+        const gameAreaRect = this.gameAreaElement.getBoundingClientRect();
+        this.paddleElement.style.left = (gameAreaRect.width / 2) + 'px';
+        this.ballElement.style.left = (gameAreaRect.width / 2) + 'px';
+        this.ballElement.style.top = (gameAreaRect.height - 55) + 'px';
+        // Create new ball instance with updated bricks
+        ball = new Ball(this.ballElement, this.gameAreaElement, this.paddleElement, this.bricks);
+        ball.moveBall();
     }
 }

@@ -21,7 +21,7 @@ let animationIdBall = null;
 let isPaused = false;
 const bricks=[]
 
-const gameManager = new GameManager(gameAreaElement,bricks,pauseButton,ballElement);
+const gameManager = new GameManager(gameAreaElement,paddleElement,ballElement,bricks,pauseButton,restartButton);
 
 // Create the bricks when you need them
 gameManager.createBricks();
@@ -62,41 +62,7 @@ function handleKeyUp() {
 
 
 // Reset game state
-restartButton.addEventListener('click', restartGame);
 
-function restartGame() {
-    // Stop current animation
-    if (animationIdBall) {
-        cancelAnimationFrame(animationIdBall);
-        animationIdBall = null;
-    }
-    if (animationIdPaddle) {
-        cancelAnimationFrame(animationIdPaddle);
-        animationIdPaddle = null;
-    }
-    // Reset game state
-    moveLeftRight = false;
-    isPaused = false;
-    pauseButton.textContent = 'Pause';
-    // Clear existing bricks
-    bricks.forEach(brick => {
-        if (brick.element && brick.element.parentNode) {
-            brick.element.parentNode.removeChild(brick.element);
-        }
-    });
-    bricks.length = 0;
-
-    // Recreate bricks
-    createBricks();
-    // Reset ball position (center above paddle)
-    const gameAreaRect = gameAreaElement.getBoundingClientRect();
-    paddleElement.style.left = (gameAreaRect.width / 2) + 'px';
-    ballElement.style.left = (gameAreaRect.width / 2) + 'px';
-    ballElement.style.top = (gameAreaRect.height - 55) + 'px';
-    // Create new ball instance with updated bricks
-    ball = new Ball(ballElement, gameAreaElement, paddleElement, bricks);
-    ball.moveBall();
-}
 
 let timeLeft = 180; 
 let xp = 0;
