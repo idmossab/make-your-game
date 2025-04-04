@@ -21,7 +21,9 @@ let moveLeftRight = false;
 let animationIdPaddle = null;
 let animationIdBall = null;
 let isPaused = false;
-const bricks=[]
+const bricks=[];
+let canStart = true;
+
 
 const gameManager = new GameManager(gameAreaElement,paddleElement,ballElement,bricks,pauseButton,restartButton,startMessage);
 
@@ -34,10 +36,11 @@ let ball = new Ball(ballElement, gameAreaElement, paddleElement, bricks);
 
 // ball movement 
 document.addEventListener("keydown", function (event) {
-    if (event.code === "Space") {
+    if (event.code === "Space" && !animationIdBall && canStart) {
         gameManager.startGame();
     }
 });
+
 // Handle paddle movement
 document.addEventListener('keydown', handleKeyDown);
 document.addEventListener('keyup', handleKeyUp);

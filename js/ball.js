@@ -110,16 +110,24 @@ class Ball {
         if (newTop + ball.height >= gameArea.height) {
             hearts--;
             heartsElement.textContent = `❤ ${hearts}`;
-            
+
             if (hearts <= 0) {
-                alert('Game Over');
                 clearInterval(timerInterval);
+                startMessage.textContent = 'Game Over - Press Restart';
+                startMessage.style.display = 'block';
+                canStart = false;
                 return;
             }
-        
+
             ballElement.style.left = (gameArea.width / 2) + 'px';
-            ballElement.style.top = (gameArea.height - 55) + 'px';
-            ball.moveBall();
+            ballElement.style.top = (gameArea.height - 50) + 'px';
+            cancelAnimationFrame(animationIdBall);  
+            animationIdBall = null;
+            // Show the "Press Space" message again
+            startMessage.textContent = 'Press Space to Start';
+            startMessage.style.display = 'block';
+            canStart = true;
+            return
         }
         // Update the ball's position and continue the animation
         this.ballElement.style.left = newLeft + 'px';
