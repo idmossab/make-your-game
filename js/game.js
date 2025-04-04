@@ -21,7 +21,7 @@ let animationIdBall = null;
 let isPaused = false;
 const bricks=[]
 
-const gameManager = new GameManager(gameAreaElement,bricks);
+const gameManager = new GameManager(gameAreaElement,bricks,pauseButton,ballElement);
 
 // Create the bricks when you need them
 gameManager.createBricks();
@@ -58,24 +58,8 @@ function handleKeyUp() {
 }
 
 // pauseButton
-pauseButton.addEventListener('click', togglePause);
 
-function togglePause() {
-    if (!isPaused) {
-        // Game is now paused
-        pauseButton.textContent = 'Resume';
-        if (animationIdBall) {
-            cancelAnimationFrame(animationIdBall);
-            animationIdBall = null;
-            isPaused = true
-        }
-    } else {
-        // Game is now resumed
-        pauseButton.textContent = 'Pause';
-        isPaused = false
-        ball.moveBall();
-    }
-}
+
 
 // Reset game state
 restartButton.addEventListener('click', restartGame);

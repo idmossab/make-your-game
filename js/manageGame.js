@@ -1,7 +1,11 @@
 class GameManager {
-    constructor(gameAreaElement,bricks) {
+    constructor(gameAreaElement, bricks, pauseButton, ball) {
         this.gameAreaElement = gameAreaElement;
         this.bricks = bricks;
+        this.pauseButton = pauseButton;
+        this.ball = ball;
+
+        this.pauseButton.addEventListener('click', () => this.togglePause());
     }
 
     // This method will be called to create the bricks
@@ -25,6 +29,22 @@ class GameManager {
                 brick.render(this.gameAreaElement);
                 this.bricks.push(brick);
             }
+        }
+    }
+    togglePause() {
+        if (!isPaused) {
+            // Game is now paused
+            pauseButton.textContent = 'Resume';
+            if (animationIdBall) {
+                cancelAnimationFrame(animationIdBall);
+                animationIdBall = null;
+                isPaused = true
+            }
+        } else {
+            // Game is now resumed
+            pauseButton.textContent = 'Pause';
+            isPaused = false
+            ball.moveBall();
         }
     }
 }
