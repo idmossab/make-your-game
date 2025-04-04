@@ -38,9 +38,11 @@ class GameManager {
         if (this.startMessage) {
             this.startMessage.style.display = "none";
         }
-        ball.moveBall();
+        if (!animationIdBall) {
+            ball.moveBall();
+        }
     }
-    togglePause() { 
+    togglePause() {
         if (!isPaused) {
             // Game is now paused
             pauseButton.textContent = 'Resume';
