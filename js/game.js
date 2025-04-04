@@ -19,36 +19,13 @@ let moveLeftRight = false;
 let animationIdPaddle = null;
 let animationIdBall = null;
 let isPaused = false;
-// Brick Dimensions and Paddings
-const cols = 3;
-const rows = 1;
-const brickColor = '#33cc33';
-const bricks = []; // Create an array to store brick objects
-const totalPaddingPercent = 16;
-const availableWidthPercent = 100 - totalPaddingPercent;
-const brickWidthPercent = availableWidthPercent / cols;
-const brickHeightPercent = 5;
-const paddingPercent = totalPaddingPercent / (cols + 1);
+const bricks=[]
 
-function createBricks() {
-    // Calculate paddings x,y
-    const horizontalPadding = paddingPercent;
-    const verticalPadding = paddingPercent + 1;
+const gameManager = new GameManager(gameAreaElement,bricks);
 
-    // Create multiple bricks using rows and columns
-    for (let row = 0; row < rows; row++) {
-        for (let col = 0; col < cols; col++) {
-            const x = horizontalPadding + col * (brickWidthPercent + horizontalPadding);
-            const y = verticalPadding + row * (brickHeightPercent + verticalPadding);
-            // Create a new brick
-            const brick = new Brick(x, y, brickWidthPercent, brickHeightPercent, brickColor);
-            brick.render(gameAreaElement);
-            bricks.push(brick);
-        }
-    }
-}
+// Create the bricks when you need them
+gameManager.createBricks();
 
-createBricks();
 
 let paddle = new Paddle(paddleElement, speedPaddle, gameAreaElement);
 let ball = new Ball(ballElement, gameAreaElement, paddleElement, bricks);
