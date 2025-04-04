@@ -8,6 +8,8 @@ const restartButton = document.getElementById('restartButton');
 const xpElement = document.getElementById('xp');
 const heartsElement = document.getElementById('hearts');
 const timerElement = document.getElementById('timer');
+let startMessage = document.getElementById("startMessage");
+
 
 // const gameAreaWidth = gameAreaElement.clientWidth;
 // const gameAreaHeight = gameAreaElement.clientHeight;
@@ -21,7 +23,7 @@ let animationIdBall = null;
 let isPaused = false;
 const bricks=[]
 
-const gameManager = new GameManager(gameAreaElement,paddleElement,ballElement,bricks,pauseButton,restartButton);
+const gameManager = new GameManager(gameAreaElement,paddleElement,ballElement,bricks,pauseButton,restartButton,startMessage);
 
 // Create the bricks when you need them
 gameManager.createBricks();
@@ -33,15 +35,9 @@ let ball = new Ball(ballElement, gameAreaElement, paddleElement, bricks);
 // ball movement 
 document.addEventListener("keydown", function (event) {
     if (event.code === "Space") {
-        startGame();
+        gameManager.startGame();
     }
 });
-
-function startGame() {
-    let startMessage = document.getElementById("startMessage");
-    startMessage.style.display = "none"; 
-    ball.moveBall();
-}
 // Handle paddle movement
 document.addEventListener('keydown', handleKeyDown);
 document.addEventListener('keyup', handleKeyUp);

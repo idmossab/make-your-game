@@ -1,11 +1,12 @@
 class GameManager {
-    constructor(gameAreaElement, paddleElement, ballElement, bricks, pauseButton, restartButton) {
+    constructor(gameAreaElement, paddleElement, ballElement, bricks, pauseButton, restartButton, startMessage) {
         this.gameAreaElement = gameAreaElement;
         this.paddleElement = paddleElement;
         this.ballElement = ballElement;
         this.bricks = bricks;
         this.pauseButton = pauseButton;
         this.restartButton = restartButton;
+        this.startMessage = startMessage;
         this.pauseButton.addEventListener('click', () => this.togglePause());
         this.restartButton.addEventListener('click', () => this.restartGame());
     }
@@ -33,7 +34,13 @@ class GameManager {
             }
         }
     }
-    togglePause() {
+    startGame() {
+        if (this.startMessage) {
+            this.startMessage.style.display = "none";
+        }
+        ball.moveBall();
+    }
+    togglePause() { 
         if (!isPaused) {
             // Game is now paused
             pauseButton.textContent = 'Resume';
