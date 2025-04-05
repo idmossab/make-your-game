@@ -115,6 +115,7 @@ class Ball {
                 clearInterval(timerInterval);
                 startMessage.textContent = 'Game Over - Press Restart';
                 startMessage.style.display = 'block';
+                pauseButton.disabled = true;
                 canStart = false;
                 return;
             }

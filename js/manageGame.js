@@ -72,6 +72,7 @@ class GameManager {
         moveLeftRight = false;
         isPaused = false;
         this.pauseButton.textContent = 'Pause';
+        this.pauseButton.disabled = false; 
         // Reset hearts
         hearts = 3;
         heartsElement.textContent = `❤ ${hearts}`;
