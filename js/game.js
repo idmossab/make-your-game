@@ -79,6 +79,7 @@ function updateTimer() {
         startMessage.style.display = 'block';
         pauseButton.disabled = true;
         canStart = false;
+        cancelAnimationFrame(animationIdBall);
         return;
     }
     
