@@ -47,6 +47,7 @@ class GameManager {
             // Game is now paused
             pauseButton.textContent = 'Resume';
             if (animationIdBall) {
+                clearInterval(timerInterval);
                 cancelAnimationFrame(animationIdBall);
                 animationIdBall = null;
                 isPaused = true
@@ -54,6 +55,7 @@ class GameManager {
         } else {
             // Game is now resumed
             pauseButton.textContent = 'Pause';
+            timerInterval = setInterval(updateTimer, 1000);
             isPaused = false
             ball.moveBall();
         }
