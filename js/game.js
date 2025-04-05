@@ -63,7 +63,7 @@ function handleKeyUp() {
 // Reset game state
 
 
-let timeLeft = 10; 
+let timeLeft = 30; 
 let xp = 0;
 let hearts = 3;
 

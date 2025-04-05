@@ -79,7 +79,7 @@ class GameManager {
         hearts = 3;
         heartsElement.textContent = `❤ ${hearts}`;
         xp = 0;
-        timeLeft=10;
+        timeLeft=30;
         xpElement.textContent = `XP: ${xp}`;
         updateTimer()
         // Allow starting with space again if needed

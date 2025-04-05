@@ -33,7 +33,12 @@ class Ball {
 
                 // Check for win condition
                 if (this.remainingBricks === 0) {
-                    alert('good! you win ');
+                    clearInterval(timerInterval);
+                    startMessage.textContent = "good! you win - Click Restart";
+                    startMessage.style.display = 'block';
+                    pauseButton.disabled = true;
+                    canStart = false;
+                    cancelAnimationFrame(animationIdBall);
                     return false;
                 }
 
