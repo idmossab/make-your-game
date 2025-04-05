@@ -72,12 +72,14 @@ class GameManager {
         moveLeftRight = false;
         isPaused = false;
         this.pauseButton.textContent = 'Pause';
-        this.pauseButton.disabled = false; 
+        this.pauseButton.disabled = false;
         // Reset hearts
         hearts = 3;
         heartsElement.textContent = `❤ ${hearts}`;
+        xp = 0;
+        xpElement.textContent = `XP: ${xp}`;
         // Allow starting with space again if needed
-        canStart = false; 
+        canStart = false;
         // Hide start message
         this.startMessage.style.display = 'none';
         // Clear existing bricks
@@ -87,7 +89,7 @@ class GameManager {
             }
         });
         this.bricks.length = 0;
- 
+
         // Recreate bricks
         this.createBricks();
         // Reset ball position (center above paddle)
