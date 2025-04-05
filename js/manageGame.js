@@ -7,7 +7,7 @@ class GameManager {
         this.pauseButton = pauseButton;
         this.restartButton = restartButton;
         this.startMessage = startMessage;
-        this.pauseButton.addEventListener('click', () => this.togglePause());
+        this.pauseButton.addEventListener('click', () => this.pauseGame());
         this.restartButton.addEventListener('click', () => this.restartGame());
     }
 
@@ -42,7 +42,7 @@ class GameManager {
             ball.moveBall();
         }
     }
-    togglePause() {
+    pauseGame() {
         if (!isPaused) {
             // Game is now paused
             pauseButton.textContent = 'Resume';
