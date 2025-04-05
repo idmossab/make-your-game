@@ -8,6 +8,9 @@ body {
     height: 100vh;
     background-color: #333;
 }
+h1{
+    color: beige;
+}
 .start {
     width: 90vw;
     max-width: 600px;

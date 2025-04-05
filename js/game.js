@@ -63,7 +63,7 @@ function handleKeyUp() {
 // Reset game state
 
 
-let timeLeft = 180; 
+let timeLeft = 10; 
 let xp = 0;
 let hearts = 3;
 
@@ -74,9 +74,14 @@ function updateTimer() {
         let seconds = timeLeft % 60;
         timerElement.textContent = `Time: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     } else {
-        alert("Time's up! Game Over.");
         clearInterval(timerInterval);
+        startMessage.textContent = "Time's up! Game Over. - Click Restart";
+        startMessage.style.display = 'block';
+        pauseButton.disabled = true;
+        canStart = false;
+        return;
     }
+    
 }
 
 const timerInterval = setInterval(updateTimer, 1000);

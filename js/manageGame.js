@@ -59,6 +59,7 @@ class GameManager {
         }
     }
     restartGame() {
+        clearInterval(timerInterval);
         // Stop current animation
         if (animationIdBall) {
             cancelAnimationFrame(animationIdBall);
@@ -73,11 +74,14 @@ class GameManager {
         isPaused = false;
         this.pauseButton.textContent = 'Pause';
         this.pauseButton.disabled = false;
+        //reset time
         // Reset hearts
         hearts = 3;
         heartsElement.textContent = `❤ ${hearts}`;
         xp = 0;
+        timeLeft=10;
         xpElement.textContent = `XP: ${xp}`;
+        updateTimer()
         // Allow starting with space again if needed
         canStart = false;
         // Hide start message
@@ -100,6 +104,6 @@ class GameManager {
         // Create new ball instance with updated bricks
         ball = new Ball(this.ballElement, this.gameAreaElement, this.paddleElement, this.bricks);
         ball.moveBall();
-
+        timerInterval = setInterval(updateTimer, 1000);
     }
 }

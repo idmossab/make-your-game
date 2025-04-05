@@ -113,7 +113,7 @@ class Ball {
 
             if (hearts <= 0) {
                 clearInterval(timerInterval);
-                startMessage.textContent = 'Game Over - Press Restart';
+                startMessage.textContent = 'Game Over - Click Restart';
                 startMessage.style.display = 'block';
                 pauseButton.disabled = true;
                 canStart = false;
