@@ -23,6 +23,7 @@ let animationIdBall = null;
 let isPaused = false;
 const bricks=[];
 let canStart = true;
+let timerInterval;
 
 
 const gameManager = new GameManager(gameAreaElement,paddleElement,ballElement,bricks,pauseButton,restartButton,startMessage);
@@ -37,7 +38,9 @@ let ball = new Ball(ballElement, gameAreaElement, paddleElement, bricks);
 // ball movement 
 document.addEventListener("keydown", function (event) {
     if (event.code === "Space" && !animationIdBall && canStart) {
+        clearInterval(timerInterval);
         gameManager.startGame();
+        timerInterval = setInterval(updateTimer, 1000);
     }
 });
 
@@ -84,6 +87,3 @@ function updateTimer() {
     }
     
 }
-
-let timerInterval = setInterval(updateTimer, 1000);
-
