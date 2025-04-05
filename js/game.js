@@ -10,12 +10,6 @@ const heartsElement = document.getElementById('hearts');
 const timerElement = document.getElementById('timer');
 let startMessage = document.getElementById("startMessage");
 
-
-// const gameAreaWidth = gameAreaElement.clientWidth;
-// const gameAreaHeight = gameAreaElement.clientHeight;
-// console.log("gameAreaWidth ;",gameAreaWidth)
-// console.log("gameAreaHeight ;",gameAreaHeight)
-
 const speedPaddle = 5;
 let moveLeftRight = false;
 let animationIdPaddle = null;
@@ -24,13 +18,13 @@ let isPaused = false;
 const bricks=[];
 let canStart = true;
 let timerInterval;
-
+let timeLeft = 30; 
+let xp = 0;
+let hearts = 3;
 
 const gameManager = new GameManager(gameAreaElement,paddleElement,ballElement,bricks,pauseButton,restartButton,startMessage);
 
-// Create the bricks when you need them
 gameManager.createBricks();
-
 
 let paddle = new Paddle(paddleElement, speedPaddle, gameAreaElement);
 let ball = new Ball(ballElement, gameAreaElement, paddleElement, bricks);
@@ -54,21 +48,11 @@ function handleKeyDown(event) {
         paddle.move(event);
     }
 }
+
 function handleKeyUp() {
     moveLeftRight = false;
     cancelAnimationFrame(animationIdPaddle);
 }
-
-// pauseButton
-
-
-
-// Reset game state
-
-
-let timeLeft = 30; 
-let xp = 0;
-let hearts = 3;
 
 function updateTimer() {
     if (timeLeft > 0) {
@@ -85,5 +69,4 @@ function updateTimer() {
         cancelAnimationFrame(animationIdBall);
         return;
     }
-    
 }

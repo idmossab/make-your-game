@@ -23,7 +23,7 @@ class Ball {
             ) {
                 // Destroy the brick
                 this.bricks[i].destroy();
-                this.bricks.splice(i, 1);
+                // this.bricks.splice(i, 1);
                 this.remainingBricks--;
                 //update xp
                 xp += 100;
