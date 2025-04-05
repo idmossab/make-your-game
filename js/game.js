@@ -85,5 +85,5 @@ function updateTimer() {
     
 }
 
-const timerInterval = setInterval(updateTimer, 1000);
+let timerInterval = setInterval(updateTimer, 1000);
 

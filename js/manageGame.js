@@ -59,6 +59,7 @@ class GameManager {
         }
     }
     restartGame() {
+        console.log(clearInterval(timerInterval));
         clearInterval(timerInterval);
         // Stop current animation
         if (animationIdBall) {
@@ -79,7 +80,7 @@ class GameManager {
         hearts = 3;
         heartsElement.textContent = `❤ ${hearts}`;
         xp = 0;
-        timeLeft=30;
+        timeLeft = 30;
         xpElement.textContent = `XP: ${xp}`;
         updateTimer()
         // Allow starting with space again if needed
