@@ -1,21 +1,21 @@
 // Define variables
-let gameAreaElement = document.getElementById('gameArea');
-let paddleElement = document.getElementById('paddle');
-let ballElement = document.getElementById('ball');
-const pauseButton = document.getElementById('pauseButton');
-const restartButton = document.getElementById('restartButton');
-// Game state elements
-const xpElement = document.getElementById('xp');
-const heartsElement = document.getElementById('hearts');
-const timerElement = document.getElementById('timer');
-let startMessage = document.getElementById("startMessage");
+ // DOM Elements
+ const gameAreaElement = document.getElementById('gameArea');
+ const paddleElement = document.getElementById('paddle');
+ const ballElement = document.getElementById('ball');
+ const pauseButton = document.getElementById('pauseButton');
+ const restartButton = document.getElementById('restartButton');
+ const xpElement = document.getElementById('xp');
+ const heartsElement = document.getElementById('hearts');
+ const timerElement = document.getElementById('timer');
+ const startMessage = document.getElementById("startMessage");
 
 const speedPaddle = 5;
+const bricks=[];
 let moveLeftRight = false;
 let animationIdPaddle = null;
 let animationIdBall = null;
 let isPaused = false;
-const bricks=[];
 let canStart = true;
 let timerInterval;
 let timeLeft = 30; 
