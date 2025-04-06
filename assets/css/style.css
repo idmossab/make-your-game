@@ -6,36 +6,49 @@ body {
     align-items: center;
     flex-direction: column;
     height: 100vh;
-    background-color: #333;
+    background-color: #0a0e29; 
+    font-family: 'Orbitron', sans-serif;
     /* background-image: url("/assets/img/backgr.jpg");
     background-position: center;
     background-size: cover; */
 }
 h1{
-    color: beige;
+    color: #00f2ff; /* Neon cyan */
+    text-shadow: 0 0 10px #00f2ff, 0 0 20px #00f2ff;
+    margin-bottom: 15px;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
 }
 .start {
     width: 90vw;
     max-width: 600px;
-    padding: 10px 0;
-    margin-bottom: 10px;
-    background: rgba(255, 255, 255, 0.8);
+    padding: 15px 0;
+    margin-bottom: 20px;
+    background: rgba(10, 14, 41, 0.8);
     text-align: center;
     border-radius: 10px;
     font-weight: bold;
+    color: #fff;
+    border: 2px solid #00f2ff;
+    box-shadow: 0 0 15px #00f2ff;
 }
 
 ul {
     list-style-type: none;
     display: flex;
     justify-content: space-around;
-    padding: 10px;
+    padding: 15px;
     margin: 0;
+    background: rgba(10, 14, 41, 0.6);
+    border-radius: 8px;
+    width: 90vw;
+    max-width: 600px;
 }
 
 li {
     padding: 5px 15px;
     font-size: 18px;
+    color: #fff;
 }
 #startMessage {
     position: absolute;
