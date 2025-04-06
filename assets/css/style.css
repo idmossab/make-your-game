@@ -118,6 +118,30 @@ li {
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+#timer {
+    color: #00f2ff;
+    font-size: 24px;
+    margin-top: 10px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px #00f2ff;
+}
+
+#xp {
+    color: #00f2ff;
+    font-size: 24px;
+    margin-top: 10px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px #00f2ff;
+}
+
+#hearts {
+    color: #00f2ff;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    text-shadow: 0 0 5px #00f2ff;
+}
+
 button {
     margin-top: 20px;
     padding: 10px 20px;
