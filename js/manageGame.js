@@ -61,6 +61,8 @@ class GameManager {
                 isPaused = true
             }
         } else {
+            clearInterval(timerInterval);
+
             // Game is now resumed
             pauseButton.textContent = 'Pause';
             timerInterval = setInterval(() => this.updateTimer(), 1000);
