@@ -7,10 +7,18 @@ class GameManager {
         this.pauseButton = pauseButton;
         this.restartButton = restartButton;
         this.startMessage = startMessage;
+        // Game objects
+        this.paddle = null;
+        this.ball = null;
         this.pauseButton.addEventListener('click', () => this.pauseGame());
         this.restartButton.addEventListener('click', () => this.restartGame());
     }
-
+    init() {
+        // Create game objects
+        this.paddle = new Paddle(this.paddleElement, speedPaddle, this.gameAreaElement);
+        this.createBricks();
+        this.ball = new Ball(this.ballElement, this.gameAreaElement, this.paddleElement, this.bricks);
+    }
     // This method will be called to create the bricks
     createBricks() {
         const cols = 3;
@@ -39,7 +47,7 @@ class GameManager {
             this.startMessage.style.display = "none";
         }
         if (!animationIdBall) {
-            ball.moveBall();
+            this.ball.moveBall();
         }
     }
     pauseGame() {
@@ -55,13 +63,13 @@ class GameManager {
         } else {
             // Game is now resumed
             pauseButton.textContent = 'Pause';
-            timerInterval = setInterval(updateTimer, 1000);
+            timerInterval = setInterval(() => this.updateTimer(), 1000);
             isPaused = false
-            ball.moveBall();
+            this.ball.moveBall();
         }
     }
     restartGame() {
-        console.log(clearInterval(timerInterval));
+        // Clear timers and animations
         clearInterval(timerInterval);
         // Stop current animation
         if (animationIdBall) {
@@ -75,19 +83,15 @@ class GameManager {
         // Reset game state
         moveLeftRight = false;
         isPaused = false;
-        this.pauseButton.textContent = 'Pause';
-        this.pauseButton.disabled = false;
-        //reset time
-        // Reset hearts
+        canStart = false;
         hearts = 3;
-        heartsElement.textContent = `❤ ${hearts}`;
         xp = 0;
         timeLeft = 30;
+        this.pauseButton.textContent = 'Pause';
+        this.pauseButton.disabled = false;
+        heartsElement.textContent = `❤ ${hearts}`;
         xpElement.textContent = `XP: ${xp}`;
-        updateTimer()
-        // Allow starting with space again if needed
-        canStart = false;
-        // Hide start message
+        this.updateTimer();
         this.startMessage.style.display = 'none';
         // Clear existing bricks
         this.bricks.forEach(brick => {
@@ -96,8 +100,6 @@ class GameManager {
             }
         });
         this.bricks.length = 0;
-
-        // Recreate bricks
         this.createBricks();
         // Reset ball position (center above paddle)
         const gameAreaRect = this.gameAreaElement.getBoundingClientRect();
@@ -105,8 +107,35 @@ class GameManager {
         this.ballElement.style.left = (gameAreaRect.width / 2) + 'px';
         this.ballElement.style.top = (gameAreaRect.height - 55) + 'px';
         // Create new ball instance with updated bricks
-        ball = new Ball(this.ballElement, this.gameAreaElement, this.paddleElement, this.bricks);
-        ball.moveBall();
-        timerInterval = setInterval(updateTimer, 1000);
+        this.ball = new Ball(this.ballElement, this.gameAreaElement, this.paddleElement, this.bricks);
+        this.ball.moveBall();
+        timerInterval = setInterval(() => this.updateTimer(), 1000);
+    }
+    handleKeyDown(event) {
+        if (!moveLeftRight) {
+            moveLeftRight = true;
+            this.paddle.move(event);
+        }
+    }
+
+    handleKeyUp() {
+        moveLeftRight = false;
+        cancelAnimationFrame(animationIdPaddle);
+    }
+    updateTimer() {
+        if (timeLeft > 0) {
+            timeLeft--;
+            let minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+            timerElement.textContent = `Time: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        } else {
+            clearInterval(timerInterval);
+            startMessage.textContent = "Time's up! Game Over. - Click Restart";
+            startMessage.style.display = 'block';
+            pauseButton.disabled = true;
+            canStart = false;
+            cancelAnimationFrame(animationIdBall);
+            return;
+        }
     }
 }

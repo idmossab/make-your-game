@@ -128,6 +128,7 @@ class Ball {
             this.ballElement.style.left = (gameArea.width / 2) + 'px';
             this.ballElement.style.top = (gameArea.height - 50) + 'px';
             this.paddleElement.style.left = (gameArea.width / 2) + 'px';
+            clearInterval(timerInterval);
             cancelAnimationFrame(animationIdBall);  
             animationIdBall = null;
             // Show the "Press Space" message again
