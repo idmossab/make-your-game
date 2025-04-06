@@ -63,7 +63,7 @@ class GameManager {
             clearInterval(timerInterval);
             // Game is now resumed
             pauseButton.textContent = 'Pause';
-            timerInterval = setInterval(() => this.updateTimer(), 1000);
+            timerInterval = setInterval(() => this.updateTimer(), 100);
             isPaused = false
             this.ball.moveBall();
         }
@@ -109,7 +109,7 @@ class GameManager {
         // Create new ball instance with updated bricks
         this.ball = new Ball(this.ballElement, this.gameAreaElement, this.paddleElement, this.bricks);
         this.ball.moveBall();
-        timerInterval = setInterval(() => this.updateTimer(), 1000);
+        timerInterval = setInterval(() => this.updateTimer(), 100);
     }
     handleKeyDown(event) {
         if (!moveLeftRight) {
@@ -124,9 +124,10 @@ class GameManager {
     }
     updateTimer() {
         if (timeLeft > 0) {
-            timeLeft--;
+            timeLeft -= 0.1; // Decrease by 0.1 seconds since interval is 100ms
             let minutes = Math.floor(timeLeft / 60);
-            let seconds = timeLeft % 60;
+            let seconds = Math.floor(timeLeft % 60);
+            // let tenths = Math.floor((timeLeft % 1) * 10);/*.${tenths}*/
             timerElement.textContent = `Time: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
         } else {
             clearInterval(timerInterval);

@@ -31,7 +31,7 @@ document.addEventListener("keydown", function (event) {
     if (event.code === "Space" && !animationIdBall && canStart) {
         clearInterval(timerInterval);
         gameManager.startGame();
-        timerInterval = setInterval(()=> gameManager.updateTimer(), 1000);
+        timerInterval = setInterval(()=> gameManager.updateTimer(), 100);
     }
 });
 
