@@ -21,9 +21,8 @@ class GameManager {
     }
     // This method will be called to create the bricks
     createBricks() {
-        const cols = 3;
-        const rows = 1;
-        const brickColor = '#33cc33';
+        const cols = 6;
+        const rows = 4;
         const totalPaddingPercent = 16;
         const availableWidthPercent = 100 - totalPaddingPercent;
         const brickWidthPercent = availableWidthPercent / cols;
@@ -36,7 +35,7 @@ class GameManager {
             for (let col = 0; col < cols; col++) {
                 const x = horizontalPadding + col * (brickWidthPercent + horizontalPadding);
                 const y = verticalPadding + row * (brickHeightPercent + verticalPadding);
-                const brick = new Brick(x, y, brickWidthPercent, brickHeightPercent, brickColor);
+                const brick = new Brick(x, y, brickWidthPercent, brickHeightPercent);
                 brick.render(this.gameAreaElement);
                 this.bricks.push(brick);
             }
