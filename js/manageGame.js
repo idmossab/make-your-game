@@ -62,7 +62,6 @@ class GameManager {
             }
         } else {
             clearInterval(timerInterval);
-
             // Game is now resumed
             pauseButton.textContent = 'Pause';
             timerInterval = setInterval(() => this.updateTimer(), 1000);
