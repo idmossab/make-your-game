@@ -123,7 +123,7 @@ class GameManager {
         cancelAnimationFrame(animationIdPaddle);
     }
     updateTimer() {
-        if (timeLeft > 0) {
+        if (timeLeft > 0.1) {
             timeLeft -= 0.1; // Decrease by 0.1 seconds since interval is 100ms
             let minutes = Math.floor(timeLeft / 60);
             let seconds = Math.floor(timeLeft % 60);

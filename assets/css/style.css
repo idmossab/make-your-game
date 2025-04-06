@@ -7,6 +7,9 @@ body {
     flex-direction: column;
     height: 100vh;
     background-color: #333;
+    /* background-image: url("/assets/img/backgr.jpg");
+    background-position: center;
+    background-size: cover; */
 }
 h1{
     color: beige;
@@ -54,8 +57,11 @@ li {
     height: 60vh;
     max-height: 400px;
     position: relative;
-    background-color: #f1f1f1;
+    /* background-color: #f1f1f1; */
+    background-image: url("/assets/img/blackbrick.jpg");
     overflow: hidden;
+    background-position: center;
+    background-size: cover;
 }
 #paddle {
     width: 16%;
