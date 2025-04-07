@@ -86,7 +86,7 @@ class GameManager {
         canStart = false;
         hearts = 3;
         xp = 0;
-        timeLeft = 30;
+        timeLeft = 180;
         this.pauseButton.textContent = 'Pause';
         this.pauseButton.disabled = false;
         heartsElement.textContent = `❤ ${hearts}`;

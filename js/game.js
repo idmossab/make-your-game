@@ -17,7 +17,7 @@ let animationIdBall = null;
 let isPaused = false;
 let canStart = true;
 let timerInterval;
-let timeLeft = 30;
+let timeLeft = 180;
 let xp = 0;
 let hearts = 3;
 
