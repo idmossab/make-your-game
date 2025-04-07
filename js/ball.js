@@ -4,8 +4,8 @@ class Ball {
         this.gameAreaElement = gameAreaElement;
         this.paddleElement = paddleElement;
         this.bricks = bricks
-        this.dx = 2; // Horizontal speed
-        this.dy = -2; // Vertical speed
+        this.dx = 3; // Horizontal speed
+        this.dy = -3; // Vertical speed
         this.remainingBricks = bricks.length; // Track remaining bricks
     }
     checkBrickCollision() {
