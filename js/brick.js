@@ -10,14 +10,13 @@ class Brick {
 
     getRandomColor() {
         const colors = [
-            '#FF5252', // Red
-            '#FF9800', // Orange
-            '#FFEB3B', // Yellow
-            '#4CAF50', // Green
-            '#2196F3', // Blue
-            '#9C27B0', // Purple
-            '#00BCD4', // Cyan
-            '#E91E63'  // Pink
+            '#00c4d7',
+            '#00e5ff',
+            '#00b0bf',
+            '#00a3c6',
+            '#2196F3', 
+            '#00d4ff',
+            '#00d0e6',
         ];
         return colors[Math.floor(Math.random() * colors.length)];
     }
