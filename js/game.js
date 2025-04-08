@@ -40,12 +40,10 @@ const gameManager = new GameManager(
 // Initialize game
 gameManager.init();
 
-// ball movement 
-document.addEventListener("keydown", function (event) {
-    if (event.code === "Space" && !animationIdBall && canStart) {
-        clearInterval(timerInterval);
-        gameManager.startGame();
-        timerInterval = setInterval(()=> gameManager.updateTimer(), 100);
+// Key event listeners
+document.addEventListener("keydown", function(event) {
+    if (event.code === "Space") {
+        gameManager.handleSpaceKey();
     }
 });
 
