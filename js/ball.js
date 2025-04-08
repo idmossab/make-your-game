@@ -83,6 +83,8 @@ class Ball {
             clearInterval(timerInterval);
             cancelAnimationFrame(animationIdBall);
             animationIdBall = null;
+            cancelAnimationFrame(animationIdPaddle);
+            animationIdPaddle = null; 
             // Show the "Press Space" message again
             startMessageText.textContent = 'Press Space to Continue';
             startMessage.style.display = 'block';
@@ -105,7 +107,7 @@ class Ball {
         //  3. Paddle collision
         if (
             ball.bottom >= paddle.top &&
-            ball.top < paddle.top &&//condiotn if ball touch wall before paddle 
+            ball.top < paddle.top &&//condiotn if ball touch wall before paddle  
             ball.right >= paddle.left &&
             ball.left <= paddle.right
         ) {

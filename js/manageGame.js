@@ -74,7 +74,6 @@ class GameManager {
             // Cancel animation frame
             cancelAnimationFrame(animationIdBall);
             animationIdBall = null;
-
             // Clear timer
             clearInterval(timerInterval);
             timerInterval = null;
