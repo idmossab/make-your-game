@@ -118,10 +118,12 @@ class Ball {
 
             if (hearts <= 0) {
                 clearInterval(timerInterval);
-                startMessage.textContent = 'Game Over - Click Restart';
+                startMessageText.textContent = 'Game Over';
                 startMessage.style.display = 'block';
-                pauseButton.disabled = true;
+                menuButtons.style.display = 'block';
+                // resumeButton.style.display = 'none';
                 canStart = false;
+                isGameOver = true;
                 return;
             }
 
@@ -129,13 +131,15 @@ class Ball {
             this.ballElement.style.top = (gameArea.height - 50) + 'px';
             this.paddleElement.style.left = (gameArea.width / 2) + 'px';
             clearInterval(timerInterval);
-            cancelAnimationFrame(animationIdBall);  
+            cancelAnimationFrame(animationIdBall);
             animationIdBall = null;
             // Show the "Press Space" message again
-            startMessage.textContent = 'Press Space to Start';
+            startMessageText.textContent = 'Press Space to Continue';
             startMessage.style.display = 'block';
+            menuButtons.style.display = 'none';
             canStart = true;
-            return
+            isPaused = true;
+            return;
         }
         // Update the ball's position and continue the animation
         this.ballElement.style.left = newLeft + 'px';

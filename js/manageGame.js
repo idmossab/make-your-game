@@ -50,9 +50,9 @@ class GameManager {
         }
         // Hide start message
         this.startMessage.style.display = "none";
-        
-         // Start the game if not already running
-         if (!animationIdBall && canStart) {
+
+        // Start the game if not already running
+        if (!animationIdBall && canStart) {
             isPaused = false;
             this.ball.moveBall();
             if (!timerInterval) {
@@ -62,7 +62,7 @@ class GameManager {
     }
     togglePause() {
         if (isGameOver) return;
-        
+
         if (!isPaused) {
             this.pauseGame();
         } else {
@@ -70,27 +70,41 @@ class GameManager {
         }
     }
     pauseGame() {
-        if (!isPaused) {
-            // Game is now paused
-            pauseButton.textContent = 'Resume';
-            if (animationIdBall) {
-                clearInterval(timerInterval);
-                cancelAnimationFrame(animationIdBall);
-                animationIdBall = null;
-                isPaused = true
-            }
-        } else {
+        if (!isGameOver && animationIdBall) {
+            // Cancel animation frame
+            cancelAnimationFrame(animationIdBall);
+            animationIdBall = null;
+
+            // Clear timer
             clearInterval(timerInterval);
-            // Game is now resumed
-            pauseButton.textContent = 'Pause';
+            timerInterval = null;
+
+            // Show pause menu
+            this.startMessageText.textContent = "Game Paused";
+            this.startMessage.style.display = 'block';
+            this.menuButtons.style.display = 'block';
+
+            isPaused = true;
+        }
+    }
+    resumeGame() {
+        // Hide pause menu
+        this.startMessage.style.display = 'none';
+        this.menuButtons.style.display = 'none';
+
+        // Restart the game loop
+        isPaused = false;
+        this.ball.moveBall();
+
+        // Restart the timer
+        if (!timerInterval) {
             timerInterval = setInterval(() => this.updateTimer(), 100);
-            isPaused = false
-            this.ball.moveBall();
         }
     }
     restartGame() {
         // Clear timers and animations
         clearInterval(timerInterval);
+        timerInterval = null;
         // Stop current animation
         if (animationIdBall) {
             cancelAnimationFrame(animationIdBall);
@@ -105,16 +119,18 @@ class GameManager {
         isPaused = false;
         canStart = false;
         isGameOver = false;
+        canStart = true;
         hearts = 3;
         xp = 0;
         timeLeft = 180;
-
-        this.pauseButton.textContent = 'Pause';
-        this.pauseButton.disabled = false;
+        // Update UI
         heartsElement.textContent = `❤ ${hearts}`;
         xpElement.textContent = `XP: ${xp}`;
         this.updateTimer();
-        this.startMessage.style.display = 'none';
+        // Update menu
+        this.startMessageText.textContent = 'Press Space to Start Game';
+        this.startMessage.style.display = 'block';
+        this.menuButtons.style.display = 'none';
         // Clear existing bricks
         this.bricks.forEach(brick => {
             if (brick.element && brick.element.parentNode) {
@@ -123,23 +139,23 @@ class GameManager {
         });
         this.bricks.length = 0;
         this.createBricks();
-        // Reset ball position (center above paddle)
+        // Reset ball and paddle position
         const gameAreaRect = this.gameAreaElement.getBoundingClientRect();
         this.paddleElement.style.left = (gameAreaRect.width / 2) + 'px';
         this.ballElement.style.left = (gameAreaRect.width / 2) + 'px';
         this.ballElement.style.top = (gameAreaRect.height - 55) + 'px';
+
         // Create new ball instance with updated bricks
         this.ball = new Ball(this.ballElement, this.gameAreaElement, this.paddleElement, this.bricks);
-        this.ball.moveBall();
-        timerInterval = setInterval(() => this.updateTimer(), 100);
+        // this.ball.moveBall();
+        // timerInterval = setInterval(() => this.updateTimer(), 100);
     }
     handleKeyDown(event) {
-        if (!moveLeftRight) {
+        if (!moveLeftRight && !isPaused) {
             moveLeftRight = true;
             this.paddle.move(event);
         }
     }
-
     handleKeyUp() {
         moveLeftRight = false;
         cancelAnimationFrame(animationIdPaddle);
@@ -153,12 +169,21 @@ class GameManager {
             timerElement.textContent = `Time: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
         } else {
             clearInterval(timerInterval);
-            startMessage.textContent = "Time's up! Game Over. - Click Restart";
-            startMessage.style.display = 'block';
-            pauseButton.disabled = true;
+            timerInterval = null;
+            this.startMessageText.textContent = "Time's up! Game Over.";
+            this.startMessage.style.display = 'block';
+            this.menuButtons.style.display = 'block';
             canStart = false;
+            isGameOver = true;
             cancelAnimationFrame(animationIdBall);
             return;
+        }
+    }
+    handleSpaceKey() {
+        if (canStart && !animationIdBall) {
+            this.startGame();
+        } else if (!isGameOver) {
+            this.togglePause();
         }
     }
 }
