@@ -23,9 +23,9 @@ class GameManager {
     }
     // This method will be called to create the bricks
     createBricks() {
-        const cols = 6;
-        const rows = 4;
-        const totalPaddingPercent = 16;
+        const cols = 5;
+        const rows = 3;
+        const totalPaddingPercent = 20;
         const availableWidthPercent = 100 - totalPaddingPercent;
         const brickWidthPercent = availableWidthPercent / cols;
         const brickHeightPercent = 5;
