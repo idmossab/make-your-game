@@ -17,6 +17,7 @@ const bricks = [];
 let moveLeftRight = false;
 let animationIdPaddle = null;
 let animationIdBall = null;
+let isGameOver = false;
 let isPaused = false;
 let canStart = true;
 let timerInterval;
