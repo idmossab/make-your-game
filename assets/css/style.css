@@ -66,6 +66,26 @@ li {
     box-shadow: 0 0 20px rgba(0, 242, 255, 0.6);
     z-index: 100;
 }
+#startMessageText {
+    margin-bottom: 20px;
+}
+
+.menu-button {
+    margin: 10px;
+    padding: 10px 25px;
+    font-size: 18px;
+    background: rgba(0, 242, 255, 0.2);
+    color: #00f2ff;
+    border: 1px solid #00f2ff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.menu-button:hover {
+    background: rgba(0, 242, 255, 0.4);
+    box-shadow: 0 0 10px #00f2ff;
+}
 
 #gameArea {
     width: 90vw;
