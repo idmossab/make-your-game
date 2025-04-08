@@ -2,13 +2,16 @@
 const gameAreaElement = document.getElementById('gameArea');
 const paddleElement = document.getElementById('paddle');
 const ballElement = document.getElementById('ball');
-const pauseButton = document.getElementById('pauseButton');
-const restartButton = document.getElementById('restartButton');
 const xpElement = document.getElementById('xp');
 const heartsElement = document.getElementById('hearts');
 const timerElement = document.getElementById('timer');
 const startMessage = document.getElementById("startMessage");
+const startMessageText = document.getElementById("startMessageText");
+const menuButtons = document.getElementById("menuButtons");
+const resumeButton = document.getElementById("resumeButton");
+const restartButton = document.getElementById('restartButton');
 
+// Game variables
 const speedPaddle = 5;
 const bricks = [];
 let moveLeftRight = false;
@@ -21,8 +24,18 @@ let timeLeft = 180;
 let xp = 0;
 let hearts = 3;
 
-const gameManager = new GameManager(gameAreaElement, paddleElement, ballElement, bricks, pauseButton, restartButton, startMessage);
-
+// Initialize game manager
+const gameManager = new GameManager(
+    gameAreaElement, 
+    paddleElement, 
+    ballElement, 
+    bricks, 
+    startMessage,
+    startMessageText,
+    menuButtons,
+    resumeButton,
+    restartButton
+);
 // Initialize game
 gameManager.init();
 
@@ -36,6 +49,9 @@ document.addEventListener("keydown", function (event) {
 });
 
 // Handle paddle movement
-document.addEventListener('keydown', (event) => gameManager.handleKeyDown(event));
-document.addEventListener('keyup', () => gameManager.handleKeyUp());
+document.addEventListener('keydown', (event) => {
+    if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+        gameManager.handleKeyDown(event);
+    }
+});document.addEventListener('keyup', () => gameManager.handleKeyUp());
 
