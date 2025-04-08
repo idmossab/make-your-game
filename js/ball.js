@@ -105,6 +105,7 @@ class Ball {
         //  3. Paddle collision
         if (
             ball.bottom >= paddle.top &&
+            ball.top < paddle.top &&//condiotn if ball touch wall before paddle 
             ball.right >= paddle.left &&
             ball.left <= paddle.right
         ) {

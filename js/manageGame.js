@@ -83,8 +83,6 @@ class GameManager {
             this.startMessageText.textContent = "Game Paused";
             this.startMessage.style.display = 'block';
             this.menuButtons.style.display = 'block';
-            this.resumeButton.style.display = 'block';
-
             isPaused = true;
         }
     }
