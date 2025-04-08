@@ -1,16 +1,18 @@
 class GameManager {
-    constructor(gameAreaElement, paddleElement, ballElement, bricks, pauseButton, restartButton, startMessage) {
+    constructor(gameAreaElement, paddleElement, ballElement, bricks, startMessage, startMessageText, menuButtons, resumeButton, restartButton) {
         this.gameAreaElement = gameAreaElement;
         this.paddleElement = paddleElement;
         this.ballElement = ballElement;
         this.bricks = bricks;
-        this.pauseButton = pauseButton;
-        this.restartButton = restartButton;
         this.startMessage = startMessage;
+        this.startMessageText = startMessageText;
+        this.menuButtons = menuButtons;
+        this.resumeButton = resumeButton;
+        this.restartButton = restartButton;
         // Game objects
         this.paddle = null;
         this.ball = null;
-        this.pauseButton.addEventListener('click', () => this.pauseGame());
+        this.resumeButton.addEventListener('click', () => this.resumeGame());
         this.restartButton.addEventListener('click', () => this.restartGame());
     }
     init() {
@@ -42,11 +44,29 @@ class GameManager {
         }
     }
     startGame() {
-        if (this.startMessage) {
-            this.startMessage.style.display = "none";
+        if (isGameOver) {
+            this.restartGame();
+            return;
         }
-        if (!animationIdBall) {
+        // Hide start message
+        this.startMessage.style.display = "none";
+        
+         // Start the game if not already running
+         if (!animationIdBall && canStart) {
+            isPaused = false;
             this.ball.moveBall();
+            if (!timerInterval) {
+                timerInterval = setInterval(() => this.updateTimer(), 100);
+            }
+        }
+    }
+    togglePause() {
+        if (isGameOver) return;
+        
+        if (!isPaused) {
+            this.pauseGame();
+        } else {
+            this.resumeGame();
         }
     }
     pauseGame() {
@@ -84,9 +104,11 @@ class GameManager {
         moveLeftRight = false;
         isPaused = false;
         canStart = false;
+        isGameOver = false;
         hearts = 3;
         xp = 0;
         timeLeft = 180;
+
         this.pauseButton.textContent = 'Pause';
         this.pauseButton.disabled = false;
         heartsElement.textContent = `❤ ${hearts}`;
