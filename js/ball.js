@@ -36,6 +36,8 @@ class Ball {
                     startMessageText.textContent = "Good! You Win!";
                     startMessage.style.display = 'block';
                     menuButtons.style.display = 'block';
+                    resumeButton.style.display = 'none';
+
                     canStart = false;
                     isGameOver = true;
                     cancelAnimationFrame(animationIdBall);
@@ -69,7 +71,7 @@ class Ball {
                 startMessageText.textContent = 'Game Over';
                 startMessage.style.display = 'block';
                 menuButtons.style.display = 'block';
-                // resumeButton.style.display = 'none';
+                resumeButton.style.display = 'none';
                 canStart = false;
                 isGameOver = true;
                 return;

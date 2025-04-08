@@ -162,17 +162,6 @@ li {
     text-shadow: 0 0 5px #00f2ff;
 }
 
-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #0099ff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
 button:hover {
     background-color: #007acc;
 }

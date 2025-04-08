@@ -83,6 +83,7 @@ class GameManager {
             this.startMessageText.textContent = "Game Paused";
             this.startMessage.style.display = 'block';
             this.menuButtons.style.display = 'block';
+            this.resumeButton.style.display = 'block';
 
             isPaused = true;
         }
@@ -131,7 +132,7 @@ class GameManager {
         this.startMessageText.textContent = 'Press Space to Start Game';
         this.startMessage.style.display = 'block';
         this.menuButtons.style.display = 'none';
-        // Clear existing bricks
+         // Clear existing bricks
         this.bricks.forEach(brick => {
             if (brick.element && brick.element.parentNode) {
                 brick.element.parentNode.removeChild(brick.element);
@@ -173,6 +174,7 @@ class GameManager {
             this.startMessageText.textContent = "Time's up! Game Over.";
             this.startMessage.style.display = 'block';
             this.menuButtons.style.display = 'block';
+            resumeButton.style.display = 'none';
             canStart = false;
             isGameOver = true;
             cancelAnimationFrame(animationIdBall);
