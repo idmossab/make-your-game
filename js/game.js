@@ -10,6 +10,9 @@ const startMessageText = document.getElementById("startMessageText");
 const menuButtons = document.getElementById("menuButtons");
 const resumeButton = document.getElementById("resumeButton");
 const restartButton = document.getElementById('restartButton');
+const howToPlayButton = document.getElementById('howToPlayButton');
+const howToPlayModal = document.getElementById('howToPlayModal');
+const closeModalButton = document.querySelector('.close');
 
 // Game variables
 const speedPaddle = 5;
@@ -54,3 +57,22 @@ document.addEventListener('keydown', (event) => {
     }
 });document.addEventListener('keyup', () => gameManager.handleKeyUp());
 
+// How to play modal
+howToPlayButton.addEventListener('click', () => {
+    howToPlayModal.style.display = "block";
+    // Pause game when modal is shown
+    if (!isPaused && animationIdBall) {
+        gameManager.pauseGame();
+    }
+});
+
+closeModalButton.addEventListener('click', () => {
+    howToPlayModal.style.display = "none";
+});
+
+// Close modal when clicking outside
+window.addEventListener('click', (event) => {
+    if (event.target === howToPlayModal) {
+        howToPlayModal.style.display = "none";
+    }
+});
