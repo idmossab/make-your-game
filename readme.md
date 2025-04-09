@@ -85,20 +85,6 @@ The ball's movement system includes:
 - Pythagoras theorem to maintain consistent ball speed
 - Angle calculation for realistic bounce effects
 
-```javascript
-// Example from Ball class - paddle collision with angle-based bouncing
-let paddleCenter = paddle.left + paddle.width / 2;
-let ballCenter = ball.left + ball.width / 2;
-let impactPoint = (ballCenter - paddleCenter) / (paddle.width / 2); // value between -1 and 1
-let speed = Math.sqrt(this.dx * this.dx + this.dy * this.dy); // Pythagoras theorem
-let angle = Math.PI / 4 * impactPoint; // Max angle of ±45 degrees
-// Set new dx and dy while maintaining speed
-this.dx = speed * Math.sin(angle);
-this.dy = -speed * Math.cos(angle);
-```
-
----
-
 ### 5. **Brick Generation & Management**
 
 Bricks are generated programmatically:
@@ -107,30 +93,6 @@ Bricks are generated programmatically:
 - Assigned random colors from a neon-themed palette
 - Tracked for collision detection and game win condition
 
-```javascript
-// Example from GameManager class - brick creation
-createBricks() {
-    const cols = 5;
-    const rows = 3;
-    const totalPaddingPercent = 20;
-    const availableWidthPercent = 100 - totalPaddingPercent;
-    const brickWidthPercent = availableWidthPercent / cols;
-    const brickHeightPercent = 5;
-    const paddingPercent = totalPaddingPercent / (cols + 1);
-    const horizontalPadding = paddingPercent;
-    const verticalPadding = paddingPercent + 1;
-
-    for (let row = 0; row < rows; row++) {
-        for (let col = 0; col < cols; col++) {
-            const x = horizontalPadding + col * (brickWidthPercent + horizontalPadding);
-            const y = verticalPadding + row * (brickHeightPercent + verticalPadding);
-            const brick = new Brick(x, y, brickWidthPercent, brickHeightPercent);
-            brick.render(this.gameAreaElement);
-            this.bricks.push(brick);
-        }
-    }
-}
-```
 
 ---
 
@@ -156,29 +118,6 @@ The game features a countdown timer:
 - Shows minutes and seconds in MM:SS format
 - Pauses when the game is paused or a life is lost
 - Ends the game when it reaches zero
-
-```javascript
-// Example from GameManager class - timer update
-updateTimer() {
-    if (timeLeft > 0.1) {
-        timeLeft -= 0.1; // Decrease by 0.1 seconds since interval is 100ms
-        let minutes = Math.floor(timeLeft / 60);
-        let seconds = Math.floor(timeLeft % 60);
-        timerElement.textContent = `Time: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-    } else {
-        clearInterval(timerInterval);
-        timerInterval = null;
-        this.startMessageText.textContent = "Time's up! Game Over.";
-        this.startMessage.style.display = 'block';
-        this.menuButtons.style.display = 'block';
-        resumeButton.style.display = 'none';
-        canStart = false;
-        isGameOver = true;
-        cancelAnimationFrame(animationIdBall);
-        return;
-    }
-}
-```
 
 ---
 
