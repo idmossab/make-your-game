@@ -25,13 +25,13 @@ class GameManager {
     createBricks() {
         const cols = 5;
         const rows = 3;
-        const totalPaddingPercent = 20;
+        const totalPaddingPercent = 30;
         const availableWidthPercent = 100 - totalPaddingPercent;
         const brickWidthPercent = availableWidthPercent / cols;
         const brickHeightPercent = 5;
         const paddingPercent = totalPaddingPercent / (cols + 1);
         const horizontalPadding = paddingPercent;
-        const verticalPadding = paddingPercent + 1;
+        const verticalPadding = paddingPercent + 2;
 
         for (let row = 0; row < rows; row++) {
             for (let col = 0; col < cols; col++) {
@@ -130,7 +130,7 @@ class GameManager {
         this.startMessageText.textContent = 'Press Space to Start Game';
         this.startMessage.style.display = 'block';
         this.menuButtons.style.display = 'none';
-         // Clear existing bricks
+        // Clear existing bricks
         this.bricks.forEach(brick => {
             if (brick.element && brick.element.parentNode) {
                 brick.element.parentNode.removeChild(brick.element);
@@ -181,6 +181,7 @@ class GameManager {
     }
     handleSpaceKey() {
         if (canStart && !animationIdBall) {
+            //start the timer here
             if (!timerInterval) {
                 timerInterval = setInterval(() => this.updateTimer(), 100);
             }
