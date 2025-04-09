@@ -81,6 +81,7 @@ class Ball {
             this.ballElement.style.top = (gameArea.height - 50) + 'px';
             this.paddleElement.style.left = (gameArea.width / 2) + 'px';
             clearInterval(timerInterval);
+            timerInterval = null;
             cancelAnimationFrame(animationIdBall);
             animationIdBall = null;
             cancelAnimationFrame(animationIdPaddle);

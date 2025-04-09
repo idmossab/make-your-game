@@ -181,6 +181,9 @@ class GameManager {
     }
     handleSpaceKey() {
         if (canStart && !animationIdBall) {
+            if (!timerInterval) {
+                timerInterval = setInterval(() => this.updateTimer(), 100);
+            }
             this.startGame();
         } else if (!isGameOver) {
             this.togglePause();
